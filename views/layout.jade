@@ -1,0 +1,33 @@
+doctype 5
+html
+  head
+    link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/ie_style.css')
+    link(rel='stylesheet', href='/css/nanoscroller.css')
+    link(rel='stylesheet', href='/css/reset.css')
+    link(rel='stylesheet', href='/css/style.css')
+
+    meta(charset='utf-8')
+    title= title
+    meta(name='description', content='')
+    meta(name='keywords', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='shortcut icon', href='favicon.ico')
+  body
+    header
+        .logo
+           a(href='#')
+            img(src='img/logo.png')
+
+    block content
+
+    footer
+    script(src='js/libs/jquery.js')
+    script(src='js/libs/underscore.js')
+    script(src='js/libs/backbone.js')
+    script(src='js/app/app.js')
+    script(src='js/app/models/userModel.js')
+    script(src='js/app/views/baseView.js')
+    script(src='js/app/views/loginView.js')
+    script(src='js/app/views/registerView.js')

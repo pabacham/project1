@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    section#main-section
+    script#loginTemplate(type='text/template')
+        .form
+            h1.reg Авторизация
+            .form-row
+                label Email
+                input.span3(type='text', name='login-email', placeholder='email@pug.by')
+            .form-row
+                label Пароль
+                input.span3(type='password', name='login-password', placeholder='****************')
+            .form-row
+                a(href='#register') Зарегистрироваться
+            .form-row
+                input.btn.btn-success.btn-block.disabled(type='submit', value='Войти в систему', id='login-btn')
+    script#registerTemplate(type='text/template')
+        .form
+            h1.reg РЕГИСТРация
+            .form-row
+                label Имя
+                input.span3(type='text', name='reg-name', placeholder='Имя')
+            .form-row
+                label Email
+                input.span3(type='text', name='reg-email', placeholder='email@pug.by')
+            .form-row
+                label Пароль
+                input.span3(type='password', name='reg-first-pswd', placeholder='****************')
+            .form-row
+                label Повторите пароль
+                input.span3(type='password', name='reg-sec-pswd', placeholder='****************')
+            .form-row
+                input.btn.btn-success.btn-block.disabled(type='submit', value='Зарегестрироваться', id='register-btn')
+    script#errorTemplate(type='text/template')
+        .form
+            h1.reg Ошибка
+            .form-row
+                label Email
+                input.span3(type='text', name='email', placeholder='Email@pug.by')
+            .form-row
+                label Пароль
+                input.span3(type='password', name='first-pswd', placeholder='****************')
+            .form-row
+                a(href='#register') Зарегистрироваться
+            .form-row
+                a(href='#login') Залогинится

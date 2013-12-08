@@ -1,0 +1,21 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "jade": "latest",
+    "mongoose": "latest",
+    "nconf": "latest",
+    "winston": "latest",
+    "async": "latest",
+    "connect-mongo": "latest",
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  }
+}
