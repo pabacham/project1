@@ -45,7 +45,13 @@ app.use(function(err, req, res, next) {
 
     if (err instanceof HttpError) {
         res.sendHttpError(err);
-    } else if(err.name && err.name == 'ValidationError') {
+    }
+    //for node-validator
+    else if(err.name && err.name == 'ValidatorError') {
+        res.send({error: true, name: err.name, message: err.message, success: false});
+    }
+    //for Mongoose Validation
+    else if(err.name && err.name == 'ValidationError') {
         res.send({errors: err.errors, success: false});
     } else {
         if (app.get('env') == 'development') {

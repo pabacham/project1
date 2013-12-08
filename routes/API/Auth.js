@@ -2,6 +2,7 @@ function Auth () {
     "use strict";
     var User = require('models/user').User,
         async = require('async'),
+        check = require('validator').check,
         _ = require('lodash');
 
     this.login = function(req, res, next) {
@@ -39,10 +40,21 @@ function Auth () {
     };
 
     this.register = function(req, res, next) {
-        var username = req.body.username,
-            email = req.body.email,
-            password = req.body.password,
-            confirmPassword = req.body.confirmPassword;
+        var username = check(req.body.username, {
+                            notEmpty: 'Please enter username',
+                            len: 'Username should be more than %1 and less than %2 characters long'
+                       }).notEmpty().len(4, 16),
+            email = check(req.body.email, {
+                        notEmpty: 'Please enter email'
+                    }).notEmpty().isEmail(),
+            password = check(req.body.password, {
+                            notEmpty: 'Please enter password',
+                            len: 'Password should be more than %1 characters long'
+                       }).notEmpty().len(4),
+            confirmPassword = check(req.body.confirmPassword, {
+                                    notEmpty: 'Please enter confirmation password',
+                                    equals: 'Passwords are not equals'
+                              }).notEmpty().equals(password);
 
         User.createUser({
             username: username,
