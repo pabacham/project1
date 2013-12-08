@@ -45,6 +45,8 @@ app.use(function(err, req, res, next) {
 
     if (err instanceof HttpError) {
         res.sendHttpError(err);
+    } else if(err.name && err.name == 'ValidationError') {
+        res.send({errors: err.errors, success: false});
     } else {
         if (app.get('env') == 'development') {
             express.errorHandler()(err, req, res, next);

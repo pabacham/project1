@@ -5,7 +5,8 @@
 		defaults: {
 			username: '',
             email: '',
-            password: ''
+            password: '',
+            confirmPassword: ''
 		},
         url: app.config.serviceUrl + 'auth/register'
 	});
