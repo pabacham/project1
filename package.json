@@ -14,7 +14,8 @@
     "async": "latest",
     "connect-mongo": "latest",
     "lodash": "~2.4.1",
-    "validator": "~2.0.0"
+    "validator": "~2.0.0",
+    "mongoose-validator": "~0.2.2"
   },
   "devDependencies": {
     "nodemon": "latest"

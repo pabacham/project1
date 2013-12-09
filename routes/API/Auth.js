@@ -39,23 +39,7 @@ function Auth () {
         res.send({result: true});
     };
 
-    this.register = function(req, res, next) {
-        check(req.body.username, {
-            notEmpty: 'Please enter username',
-            len: 'Username should be more than %1 and less than %2 characters long'
-        }).notEmpty().len(4, 16);
-
-        check(req.body.email, {
-            notEmpty: 'Please enter email'
-        }).notEmpty().isEmail();
-        check(req.body.password, {
-            notEmpty: 'Please enter password',
-            len: 'Password should be more than %1 characters long'
-        }).notEmpty().len(4);
-        check(req.body.confirmPassword, {
-            notEmpty: 'Please enter confirmation password'
-        }).notEmpty();
-
+    this.register = function(req, res, next) {       
         var username = req.body.username,
             email = req.body.email,
             password = req.body.password,
