@@ -1,0 +1,24 @@
+extends layoutApp
+
+block content
+    script#headerTemplate(type='text/template')
+        a.user-exit(href='#')
+            i.exit-icon
+            | Выход
+        nav
+            ul.top-menu
+                li
+                    a(href='#')
+                        img(src='img/logo.png')
+                li.active
+                    a(href='#')
+                        i.user-top-icon
+                        | Панель управления
+                li
+                    a(href='#')
+                        i.user-top-icon
+                        | Аккаунт
+                li
+                    a(href='#')
+                        i.user-top-icon
+                        | Статистика

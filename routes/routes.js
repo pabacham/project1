@@ -9,7 +9,7 @@ module.exports = function(app) {
     });
 
     app.get('/app', checkAuth, function(req, res) {
-       res.send(req.session);
+        res.render('indexApp', {});
     });
 
     app.post('/api/auth/login', require('./API/Auth').login);

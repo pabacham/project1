@@ -2,7 +2,6 @@ function Auth () {
     "use strict";
     var User = require('models/user').User,
         async = require('async'),
-        check = require('validator').check,
         _ = require('lodash');
 
     this.login = function(req, res, next) {
@@ -39,7 +38,7 @@ function Auth () {
         res.send({result: true});
     };
 
-    this.register = function(req, res, next) {       
+    this.register = function(req, res, next) {
         var username = req.body.username,
             email = req.body.email,
             password = req.body.password,
