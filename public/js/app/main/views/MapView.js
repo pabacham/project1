@@ -1,9 +1,9 @@
 (function (window, $, _, views) {
     "use strict";
 
-    views.SubMenuView = views.BaseView.extend({
-        templateName: "subMenuTemplate",
-        container: "ul.sub-menu",
+    views.MapView = views.BaseView.extend({
+        templateName: "mapTemplate",
+        container: ".map-block",
         initialize: function () {
         },
         render: function () {

@@ -26,6 +26,8 @@
 
         main: function() {
             this.showView(new views.HeaderView());
+            this.showView(new views.SubMenuView());
+            this.showView(new views.MapView());
         },
 
         showView: function(view){

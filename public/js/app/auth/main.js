@@ -31,7 +31,7 @@
         },
 
         register: function() {
-            this.showView(new views.RegisterView(new models.UserModel()));
+            this.showView(new views.RegisterView(new models.UserModel(), this));
         },
         /*note: function(id) {
             this.noteList.invoke("active", false);

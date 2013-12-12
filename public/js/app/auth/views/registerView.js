@@ -4,9 +4,12 @@
     views.RegisterView = views.BaseView.extend({
         templateName: "registerTemplate",
         container: "#main-section",
-        initialize: function (model) {
+        initialize: function (model, router) {
             this.model = model;
-            //this.listenTo(this.model, 'sync', this.render);
+            this.listenTo(this.model, 'sync', function(e) {
+                router.navigate('/');
+                router.login();
+            });
         },
         events: {
             "click #register-btn": "registerUser"
