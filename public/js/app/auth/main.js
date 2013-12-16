@@ -31,20 +31,8 @@
         },
 
         register: function() {
-            this.showView(new views.RegisterView(new models.UserModel(), this));
+            this.showView(new views.RegisterView(new models.UserModel()));
         },
-        /*note: function(id) {
-            this.noteList.invoke("active", false);
-            this.showView(new views.NoteView(this.noteList.get(id), id));
-        },
-        addNote: function() {
-            this.noteList.invoke("active", false);
-            this.showView(new views.AddNoteView(this.noteList));
-        },
-        editNote: function(id) {
-            this.noteList.invoke("active", false);
-            this.showView(new views.EditNoteView(this.noteList.get(id), id));
-        },*/
 
         showView: function(view){
             if(_.has(this.views, view.container)){

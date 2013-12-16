@@ -26,13 +26,13 @@ block content
     script#subMenuTemplate(type='text/template')
         li Панель управления
         li.active
-            a.menu-map(href='#') Карта
+            a.menu-map(href='#map') Карта
         li
-            a.menu-object(href='#') Объекты
+            a.menu-object(href='#objects') Объекты
         li
-            a.menu-geozone(href='#') Геозоны
+            a.menu-geozone(href='#geozones') Геозоны
         li
-            a.menu-tracker(href='#') Трекеры
+            a.menu-tracker(href='#trackers') Трекеры
 
     script#mapTemplate(type='text/template')
         .map-header
@@ -127,4 +127,11 @@ block content
                     br
                     a.hide-tab(href='#') Скрыть
 
-    script#mapHeaderTemplate(type='text/template')
+    script#objectsTemplate(type='text/template')
+        div Objects
+
+    script#geoZonesTemplate(type='text/template')
+        div Geo Zones
+
+    script#trackersTemplate(type='text/template')
+        div Trackers

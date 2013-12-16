@@ -18,16 +18,32 @@
 
         initialize: function() {
             this.views = {};
+            this.showView(new views.HeaderView());
+            this.showView(new views.SubMenuView());
         },
 
         routes: {
-            "": "main"
+            "": "main",
+            "map": "main",
+            "objects": "objects",
+            "geozones": "geozones",
+            "trackers": "trackers"
         },
 
         main: function() {
-            this.showView(new views.HeaderView());
-            this.showView(new views.SubMenuView());
             this.showView(new views.MapView());
+        },
+
+        objects: function() {
+            this.showView(new views.ObjectsView());
+        },
+
+        geozones: function() {
+            this.showView(new views.GeoZonesView());
+        },
+
+        trackers: function() {
+            this.showView(new views.TrackersView());
         },
 
         showView: function(view){
