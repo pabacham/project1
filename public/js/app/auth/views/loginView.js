@@ -4,11 +4,21 @@
     views.LoginView = views.BaseView.extend({
         templateName: "loginTemplate",
         container: "#main-section",
-        initialize: function () {
+        isAlreadyRendered: false,
+        initialize: function (model, isAlreadyRendered) {
+            this.isAlreadyRendered = isAlreadyRendered;
         },
         events: {
-            "click #login-btn": "login"
+            'click #login-btn': 'login',
+            'keypress .form': 'processKey'
         },
+
+        processKey: function(e) {
+            if(e.which === 13){ // enter key
+                this.login();
+            }
+        },
+
         login: function () {
             var formValues = {
                 email: $('input[name="login-email"]').val(),
@@ -25,8 +35,18 @@
             });
         },
         render: function () {
+            var _this = this;
+
             this.$el.html(_.template(this.getTemplate()));
-            $(this.container).html(this.$el);
+
+            if(this.isAlreadyRendered) {
+                $(this.container).html(this.$el);
+                this.$el.find('input[name="login-email"]').focus();
+            } else {
+                $(this.container).hide().html(this.$el).delay(150).fadeIn(600, function() {
+                    _this.$el.find('input[name="login-email"]').focus();
+                });
+            }
 
             return this;
         }

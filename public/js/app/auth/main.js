@@ -18,6 +18,7 @@
 
         initialize: function() {
             this.views = {};
+            this.isLoginAlreadyRendered = false;
         },
 
         routes: {
@@ -27,7 +28,8 @@
         },
 
         login: function() {
-            this.showView(new views.LoginView());
+            this.showView(new views.LoginView(null, this.isLoginAlreadyRendered));
+            this.isLoginAlreadyRendered = true;
         },
 
         register: function() {
