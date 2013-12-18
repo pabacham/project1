@@ -29,15 +29,28 @@ h1.reg {line-height: 54px; padding-left: 13px; background: #b1a599; border-radiu
 /*login*/
 header {overflow: hidden;}
 header .logo {height: 78px; margin: 0 auto; padding-top: 100px; width: 175px;}
-header > nav {margin-top: 40px;}
+
 section {margin: 0 auto; background: #fff; border-radius: 5px; width: 292px; overflow: hidden;}
 .form-row {padding: 0 10px;}
 .form-row label { font-weight: bold; color: #a3958a; display: block; padding-bottom: 7px; cursor: default;}
 .form-row input[type="text"] {border-color: #cec8c1; font-family: Arial, Tahoma, Verdana, sans-serif; font-size: 12px;}
 section input[type="submit"] {height: 40px; margin: 14px 0 12px 0; background: #4daf7c!important; font-size: 15px; cursor: pointer!important; opacity: 1!important;}
+/*
+                                header
+*/
+.user-exit {color: #ffffff; text-decoration: none;	display: inline-block;	text-align: right; margin: 8px 0; position: relative;}
+.user-exit:before {position: absolute; content: ''; height: 16px; width: 16px; left: -18px; top: 0; background: url("../img/sprite.png") no-repeat -53px -55px; display: inline-block;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;}
+.user-exit:hover {color: #fff;}
+.user-exit:hover:before {transform: rotate(180deg);}
 
-
-/*main-menu*/
+/*
+                                 main-menu
+*/
 ul.top-menu {list-style-type: none;	border-radius: 5px;	background-color: #ffffff;	min-width: 715px; width: 100%; height: 60px;}
 ul.top-menu li {display: block; float: left; margin: 0;	padding: 0;}
 ul.top-menu li a {position: relative; border-right: 1px solid #f5f0ec; padding: 0 15px 0 45px;	height: 60px; line-height: 60px; display: inline-block;	color: #8f7f70;	text-transform: uppercase; text-decoration: none;}
@@ -53,35 +66,31 @@ ul.top-menu li.active .statistics:before {background-position: -73px -143px;}
 ul.top-menu li:first-child a {padding: 0 15px;}
 ul.top-menu li:first-child a img {height: 33px; width: 117px; padding: 0 28px 0 17px;}
 
-/*sub-manu*/
+/*
+                                sub-manu
+*/
 ul.sub-menu {list-style-type: none; width: 293px; display: inline-block; float: left;}
 ul.sub-menu li:first-child {height: 54px; line-height: 54px; color: #ffffff; text-transform: uppercase; border-radius: 5px 5px 0 0; width: 281px; padding-left: 12px;background: #b1a599; position: relative;}
 ul.sub-menu li:first-child:after {content: '?'; position: absolute; right: 15px; top: 16px; width: 19px; height: 20px; font-weight: bold; font-size: 20px; line-height: 20px;}
 ul.sub-menu li:last-child a {border-radius: 0 0 5px 5px;}
-ul.sub-menu li a {position: relative; height: 49px; line-height: 49px; width: 281px; padding-left: 12px; display: inline-block; color: #8f7f70; background-color: #ffffff; text-transform: capitalize; text-decoration: none;}
-ul.sub-menu li.active a {background-color: #f8f3f0; border-left: 4px solid #4daf7c; width: 277px;}
+ul.sub-menu li a {border-left: 4px solid #fff; position: relative; height: 49px; line-height: 49px; padding-left: 12px; display: block; color: #8f7f70; background-color: #ffffff; text-transform: capitalize; text-decoration: none;}
+ul.sub-menu li.active a {background-color: #f8f3f0; border-left: 4px solid #4daf7c; }
+ul.sub-menu li a:hover {background-color: #f8f3f0; border-left: 4px solid #4daf7c; }
 
-    /*background*/
+
 .menu-map:after {background: url("../img/sprite.png") no-repeat 0 0; content: ''; position: absolute; right: 15px; top: 15px; width: 19px; height: 19px;}
 .menu-object:after {background: url("../img/sprite.png") no-repeat -2px -27px; content: ''; position: absolute; right: 15px; top: 13px; width: 19px; height: 23px;}
 .menu-geozone:after {background: url("../img/sprite.png") no-repeat -2px -56px; content: ''; position: absolute; right: 15px; top: 14px; width: 22px; height: 22px;}
 .menu-tracker:after {background: url("../img/sprite.png") no-repeat -2px -84px; content: ''; position: absolute; right: 16px; top: 15px; width: 19px; height: 19px;}
-.active .menu-map:after {background-position: -22px 0;}
-.active .menu-object:after {background-position: -24px -26px;}
-.active .menu-geozone:after {background-position: -24px -56px;}
-.active .menu-tracker:after {background-position: -25px -84px;}
+.active .menu-map:after, .menu-map:hover:after {background-position: -22px 0;}
+.active .menu-object:after, .menu-object:hover:after {background-position: -24px -26px;}
+.active .menu-geozone:after, .menu-geozone:hover:after {background-position: -25px -56px;}
+.active .menu-tracker:after, .menu-tracker:hover:after {background-position: -25px -84px;}
 
 
-/*content*/
-.user-exit {color: #ffffff; text-decoration: none;	display: inline-block;	text-align: right; margin: 8px 0; position: relative; float: right;}
-.user-exit:before {position: absolute; content: ''; height: 16px; width: 16px; left: -18px; top: 0; background: url("../img/sprite.png") no-repeat -53px -55px; display: inline-block;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;}
-.user-exit:hover {color: #fff;}
-.user-exit:hover:before {transform: rotate(180deg);}
+/*
+                                    content
+*/
 .page-content {display: block;	margin: 19px 0 0; min-height: 100%; overflow: hidden;}
 .map-block {margin: 0 0 0 320px; border-radius: 5px;}
 .map-block .map-header {line-height: 50px; border-radius: 5px 5px 0 0; background-color: #ffffff;	display: block; overflow: hidden;}
@@ -102,11 +111,12 @@ ul.sub-menu li.active a {background-color: #f8f3f0; border-left: 4px solid #4daf
 .slider-body .txt {margin: 0;}
 .slider-body .btn-box {padding-top: 30px;}
 .slider-body .btn-box .btn01 {margin-right: 10px;}
-.place-map {overflow: hidden; min-height: 100%; position: relative;}
+.place-map {overflow: hidden; height: calc(100% - 166px) ; position: absolute; width: calc(100% - 360px);}
+.map {overflow: hidden; height: 100%;}
 
-.map {height:500px; overflow: hidden;}
-
-/*tabs map*/
+/*
+                                        tabs map
+*/
 ul#object-detail {height: 45px; position: relative; overflow: hidden;}
 ul#object-detail li { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; float: left; margin: 0 6px 0 0; border: solid 1px #ffffff; position: relative; z-index: 100;}
 ul#object-detail li.selected { z-index: 103;}
@@ -119,7 +129,7 @@ ul#object-detail li.selected a { -moz-opacity: 1; -khtml-opacity: 1; opacity: 1;
 .tab-for-detail  .hide-tab {position: absolute; right: 10px; top: 10px; text-indent: -99999px; background: url("../img/sprite.png") no-repeat -47px 0; height: 23px; width: 23px;}
 .tab-for-detail .tab-content {height: 200px;}
 .tab-for-detail .content > p:first-child {margin-bottom: 20px;}
-.tab-on-map {position: absolute; bottom: -255px; /*bottom: 0;*/ width: 100%;
+.tab-on-map {position: absolute; bottom: -255px; width: 100%;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -ms-transition: all 1s ease;
@@ -127,7 +137,9 @@ ul#object-detail li.selected a { -moz-opacity: 1; -khtml-opacity: 1; opacity: 1;
     transition: all 1s ease;}
 .tab-on-map.open {bottom: 0;
 }
-    /*background*/
+/*
+                                            background
+*/
 .item-box {float: left;}
 .item-box .green {width: 130px; display: block; line-height: 44px; height: 44px; text-align: center; background: #4daf7c; color: #fff; border-radius: 3px; overflow: hidden; margin: 5px 23px 10px 0; font-size: 24px;}
 .item-box .green i {font-style: normal; font-size: 18px;}

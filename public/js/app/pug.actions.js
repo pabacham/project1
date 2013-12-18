@@ -1,16 +1,20 @@
 $(document).ready(function() {
-
+    var subMenuList = $('.sub-menu li');
     $('.open-slider').click(function(){
         $('.slider-body').toggleClass('open');
     })
     $('.slider-close').click(function(){
         $('.slider-body').toggleClass('open');
     })
-    $('.selected').click(function(){
+    $('#object-detail li a').click(function(){
         $(this).closest('.tab-on-map').addClass('open');
     })
     $('.hide-tab').click(function(){
         $(this).closest('.open').removeClass('open');
+    })
+    $(subMenuList).click(function(){
+        $(subMenuList).removeClass('active')
+        $(this).addClass('active');
     })
 
     // tabs

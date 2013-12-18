@@ -58,10 +58,5 @@ html
         script(src='js/app/pug.actions.js')
 
         script(type='text/javascript')
-            $(document).ready(function() {
-                $('.place-map').height($('.wrapper').height() - $('header').height()-71);
-                $('.map').height($('.place-map').height());
-                $('.nano').nanoScroller();
-                //place-map
-            });
+
         block content
