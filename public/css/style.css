@@ -10,9 +10,10 @@ body {color: #4f4f4f; font: 14px/18px Arial, Tahoma, Verdana, sans-serif; font-w
 input, label {font-family: Arial, Tahoma, Verdana, sans-serif!important;}
 
 
-.test {display: block; background: url(../img/images/e.png) no-repeat 0 0; height: 16px; width: 24px; overflow: hidden; position: absolute; top: 30%; left: 10px;}
-.test.one { background: url(../img/images/e-test.png) no-repeat 0 0;}
 .close-user {position: absolute; top: 5px; right: 5px; display: block; background: url("../img/sprite.png") no-repeat -27px -111px; height: 11px; width: 11px;}
+.reg_link, .forgot_link {color: #51A351; font-family: Arial, Tahoma, Verdana, sans-serif;}
+.forgot_link {float: right;}
+.reg_link:hover, .forgot_link:hover {color: #51A351;}
 
 .close-user:hover {color: #fff;}
 .user-block {float: left; height: 36px; position: relative; padding:0 30px 0 47px ; background: #e55f3a; line-height: 36px; font-size: 15px; color: #fff; font-weight: bold; border-radius: 5px; overflow: hidden; margin: 3px;}
@@ -21,7 +22,6 @@ input, label {font-family: Arial, Tahoma, Verdana, sans-serif!important;}
 .user-block.two {background: #4daf7c;}
 
 h1.reg {line-height: 54px; padding-left: 13px; background: #b1a599; border-radius: 5px 5px 0 0; font-size: 14px; text-transform: uppercase; color: #fff; font-weight: normal; margin-bottom: 10px;}
-.user-top-icon {background-image: url("../img/icon-top-menu.png"); background-repeat: no-repeat; display: inline-block; height: 23px; margin-right: 14px; position: relative; top: 6px; width: 21px;}
 .wrapper {min-height: 100%; font: 14px/18px Arial, Tahoma, Verdana, sans-serif;}
 .btn01 {display: inline-block; line-height: 40px; padding: 0 25px; background: #4daf7c; font-size: 15px; color: #fff; border-radius: 5px; text-decoration: none;}
 .btn02 {display: inline-block; line-height: 40px; padding: 0 25px; background: #9e9e9e; font-size: 15px; color: #fff; border-radius: 5px; text-decoration: none;}
@@ -34,6 +34,7 @@ section {margin: 0 auto; background: #fff; border-radius: 5px; width: 292px; ove
 .form-row {padding: 0 10px;}
 .form-row label { font-weight: bold; color: #a3958a; display: block; padding-bottom: 7px; cursor: default;}
 .form-row input[type="text"] {border-color: #cec8c1; font-family: Arial, Tahoma, Verdana, sans-serif; font-size: 12px;}
+#main-section .form-row input[type="text"]:focus,#main-section .form-row input[type="password"]:focus {border-color: rgba(152, 152, 152, 0.8); outline: 0px none; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(152, 152, 152, 0.6);}
 section input[type="submit"] {height: 40px; margin: 14px 0 12px 0; background: #4daf7c!important; font-size: 15px; cursor: pointer!important; opacity: 1!important;}
 /*
                                 header
@@ -115,14 +116,25 @@ ul.sub-menu li a:hover {background-color: #f8f3f0; border-left: 4px solid #4daf7
 .place-map:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; top: 0; left: 0; opacity: 0.4; z-index: -1;}
 .map {overflow: hidden; height: 100%;}
 
+/**/
+.object_block {overflow: hidden; height: calc(100% - 114px) ; position: absolute; width: calc(100% - 360px); background: url("../img/loading.gif") no-repeat 50% 50%; text-indent: -9999px}
+.object_block:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; top: 0; left: 0; opacity: 0.4; z-index: -1;}
+
+.geo_zones_block {overflow: hidden; height: calc(100% - 114px) ; position: absolute; width: calc(100% - 360px); background: url("../img/loading.gif") no-repeat 50% 50%; text-indent: -9999px}
+.geo_zones_block:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; top: 0; left: 0; opacity: 0.4; z-index: -1;}
+
+.trackers_block {overflow: hidden; height: calc(100% - 114px) ; position: absolute; width: calc(100% - 360px); background: url("../img/loading.gif") no-repeat 50% 50%; text-indent: -9999px}
+.trackers_block:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; top: 0; left: 0; opacity: 0.4; z-index: -1;}
+
 /*
                                         tabs map
 */
 ul#object-detail {height: 45px; position: relative; overflow: hidden;}
 ul#object-detail li { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; float: left; margin: 0 6px 0 0; border: solid 1px #ffffff; position: relative; z-index: 100;}
 ul#object-detail li.selected { z-index: 103;}
-ul#object-detail li a {-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; display: block; text-align: center; padding: 0 26px; height: 47px; line-height: 47px; text-transform: uppercase; text-decoration: none; font-weight: bold; color: #8d806f; outline: none; background-color: #ffffff; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30); -moz-opacity: 0.3; -khtml-opacity: 0.3; opacity: 0.3;}
-ul#object-detail li.selected a { -moz-opacity: 1; -khtml-opacity: 1; opacity: 1;}
+ul#object-detail li a {position: relative; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; display: block; text-align: center; padding: 0 26px; height: 47px; line-height: 47px; text-transform: uppercase; text-decoration: none; font-weight: bold; color: #8d806f; outline: none;}
+ul#object-detail li a:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; left: 0; top: 0; z-index: -1; opacity: 0.3;}
+ul#object-detail li.selected a:after { -moz-opacity: 1; -khtml-opacity: 1; opacity: 1;}
 
 .tab-for-detail {background-color: #ffffff; height: 255px; padding: 0 0 0 30px; position: relative; overflow: hidden;}
 .tab-for-detail h2 {color: #5d5145; font-size: 24px; line-height: 24px; margin: 20px 0 7px;}
@@ -142,20 +154,17 @@ ul#object-detail li.selected a { -moz-opacity: 1; -khtml-opacity: 1; opacity: 1;
                                             background
 */
 .item-box {float: left;}
-.item-box .green {width: 130px; display: block; line-height: 44px; height: 44px; text-align: center; background: #4daf7c; color: #fff; border-radius: 3px; overflow: hidden; margin: 5px 23px 10px 0; font-size: 24px;}
+.item-box > span {position: relative; padding-left: 47px;}
+.item-box .green {width: 83px; display: block; line-height: 44px; height: 44px; text-align: center; background: #4daf7c; color: #fff; border-radius: 3px; overflow: hidden; margin: 5px 23px 10px 0; font-size: 24px;}
 .item-box .green i {font-style: normal; font-size: 18px;}
-.item-box .green span {width: 47px; float: left; text-align: center; height: 44px; background: #329160;}
 .item-box .green.low {background: #f29478;}
-.item-box .green.low span {background:#e96b45;}
-.item-box .speed span {background: url(../img/images/tab-icon.png) no-repeat 0 0 #329160;}
-.item-box .signal span {background: url(../img/images/tab-icon.png) no-repeat 0 -44px #329160;}
-.item-box .battery span {background: url(../img/images/tab-icon.png) no-repeat 0 -88px #329160;}
-.item-box .gprs span {background: url(../img/images/tab-icon.png) no-repeat 0 -132px #329160;}
-.item-box .speed.low span {background: url(../img/images/tab-icon.png) no-repeat 0 0 #e96b45;}
-.item-box .signal.low span {background: url(../img/images/tab-icon.png) no-repeat 0 -44px #e96b45;}
-.item-box .battery.low span {background: url(../img/images/tab-icon.png) no-repeat 0 -88px #e96b45;}
-.item-box .gprs.low span {background: url(../img/images/tab-icon.png) no-repeat 0 -132px #e96b45;}
 
+.item-box .green:after {content: ''; position: absolute; width: 47px; height: 100%; left: 0; top: 0; background: url("../img/sprite.png") #329160;}
+.item-box .green.low:after {content: ''; position: absolute; width: 47px; height: 100%; left: 0; top: 0; background: url("../img/sprite.png") #E96B45;}
+.item-box .green.gprs:after { background-position: -7px -259px!important;}
+.item-box .green.battery:after { background-position: -7px -215px!important;}
+.item-box .green.signal:after { background-position: -7px -171px!important;}
+.item-box .green.speed:after { background-position: -6px -128px!important;}
 
 @media (min-width:768px) and (max-width:979px) {section {width: 240px;} .form-row input {width: 206px;}}
 @media (min-width:980px) and (max-width:1198px) {section {width: 240px;}}

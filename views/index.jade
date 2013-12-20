@@ -12,7 +12,8 @@ block content
                 label Пароль
                 input.span3(type='password', name='login-password', placeholder='****************')
             .form-row
-                a(href='#register') Зарегистрироваться
+                a.forgot_link(href='#register') Забыли пароль?
+                a.reg_link(href='#register') Зарегистрироваться
             .form-row
                 input.btn.btn-success.btn-block.disabled(type='submit', value='Войти в систему', id='login-btn')
     script#registerTemplate(type='text/template')
@@ -42,6 +43,6 @@ block content
                 label Пароль
                 input.span3(type='password', name='first-pswd', placeholder='****************')
             .form-row
-                a(href='#register') Зарегистрироваться
+                a.reg_link(href='#register') Зарегистрироваться
             .form-row
                 a(href='#login') Залогинится

@@ -70,47 +70,39 @@ block content
                             .item-box
                                 p Скорость
                                 span.green.speed
-                                    span
                                     | 7
                                     i km/h
                             .item-box
                                 p Уровень сигнала
                                 span.green.signal
-                                    span
                                     | 60%
                             .clear
                             .item-box
                                 p Заряд батареи
                                 span.green.low.battery
-                                    span
                                     | 20%
                             .item-box
                                 p GPRS
                                 span.green.gprs
-                                    span
                                     | ON
                             .clear
                             .item-box
                                 p Скорость
                                 span.green.low.speed
-                                    span
                                     | 0
                                     i km/h
                             .item-box
                                 p Уровень сигнала
                                 span.green.low.signal
-                                    span
                                     | 20%
                             .clear
                             .item-box
                                 p Заряд батареи
                                 span.green.battery
-                                    span
                                     | 80%
                             .item-box
                                 p GPRS
                                 span.green.low.gprs
-                                    span
                                     | OFF
                 #data-action-log.tab-for-detail(style='display: none;')
                     | the second tab
@@ -122,10 +114,10 @@ block content
                     a.hide-tab(href='javascript:void(0)') Скрыть
 
     script#objectsTemplate(type='text/template')
-        div Objects
+        div.object_block Objects
 
     script#geoZonesTemplate(type='text/template')
-        div Geo Zones
+        div.geo_zones_block Geo Zones
 
     script#trackersTemplate(type='text/template')
-        div Trackers
+        div.trackers_block Trackers
