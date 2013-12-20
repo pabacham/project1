@@ -5,6 +5,7 @@
         views: {},
         models: {},
         templates: {},
+        socket: null,
         config: {
             serviceUrl: global.location.origin+ "/api/"
         }
@@ -12,6 +13,19 @@
 
     var views = global.App.views,
         models = global.App.models;
+
+    global.App.socket = io.connect('', {
+        reconnect: false
+    });
+
+    global.App.socket
+        .on('connect', function() {
+            console.log('socket connected');
+        })
+        .on('disconnect', function() {
+            console.log('socket disconnected');
+            setTimeout(reconnect, 500);
+        });
 
 
     var Router = Backbone.Router.extend({
@@ -61,4 +75,12 @@
         global.app = new Router();
         Backbone.history.start();
     });
+
+    function reconnect() {
+        global.App.socket.once('error', function() {
+            setTimeout(reconnect, 500);
+        });
+        global.App.socket.socket.connect();
+    }
+
 })(window, window.$, window._, window.Backbone);

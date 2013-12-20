@@ -34,7 +34,6 @@ app.use(express.session({
 }));
 
 app.use(require('middleware/sendHttpError'));
-//app.use(require('middleware/loadUser'));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -67,6 +66,9 @@ app.use(function(err, req, res, next) {
 //routes mapping
 routes(app);
 
-http.createServer(app).listen(config.get('port'), function(){
+var server = http.createServer(app);
+server.listen(config.get('port'), function(){
   log.info('Express server listening on port ' + config.get('port'));
 });
+
+require('./socket')(server);
