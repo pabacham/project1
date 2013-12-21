@@ -2,9 +2,9 @@ extends layoutApp
 
 block content
     script#headerTemplate(type='text/template')
-        a.user-exit(href='#', id='user-logout')
-            i.exit-icon
-            | Выход
+        div.wrap_btn
+            a.user-exit(href='#', id='user-logout')
+                | Выход
         nav
             ul.top-menu
                 li
@@ -22,13 +22,13 @@ block content
 
     script#subMenuTemplate(type='text/template')
         li Панель управления
-        li.active
+        li.one
             a.menu-map(href='#map') Карта
-        li
+        li.two
             a.menu-object(href='#objects') Объекты
-        li
+        li.three
             a.menu-geozone(href='#geozones') Геозоны
-        li
+        li.four
             a.menu-tracker(href='#trackers') Трекеры
 
     script#mapTemplate(type='text/template')
@@ -44,7 +44,7 @@ block content
                     a.close-user(href='#')
                     | Оля
                 span.auto
-                span.add-item.open-slider +
+                span#map_slider_open +
             span.title-map-header Объекты на карте:
         .place-map
             .map
@@ -121,3 +121,25 @@ block content
 
     script#trackersTemplate(type='text/template')
         div.trackers_block Trackers
+
+    script#mapSliderTemplate(type='text/template')
+        #add-tracker.slider-body
+            h2 Добавление нового трекера
+            p
+                | На этой странице вы можете добавить новое трекерное устройство. Все поля обязательны для заполнения.
+            .form-row
+                label Модель трекера
+                input.txt(type='text', placeholder='Huawei 12387643 Lorem Ipsum')
+            .form-row
+                label Серийный номер трекера
+                input.txt(type='text', placeholder='2387643534534534')
+            .form-row
+                label Имя нового трекера
+                input.txt(type='text', placeholder='Трекер для сына')
+            .form-row
+                label Мобильный номер SIM карты
+                input.txt(type='text', placeholder='+375257923456')
+            .btn-box
+                a.btn01(href='#') Добавить
+                a.btn02(href='#') Отменить
+            .slider-close

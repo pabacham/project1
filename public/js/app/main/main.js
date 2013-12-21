@@ -42,22 +42,32 @@
             "objects": "objects",
             "geozones": "geozones",
             "trackers": "trackers"
+
         },
 
         main: function() {
+            this.showView(new views.MapSliderView());
             this.showView(new views.MapView());
+            this.makeActive('map');
         },
 
         objects: function() {
             this.showView(new views.ObjectsView());
+            this.makeActive('objects');
         },
 
         geozones: function() {
             this.showView(new views.GeoZonesView());
+            this.makeActive('geozones');
         },
 
         trackers: function() {
             this.showView(new views.TrackersView());
+            this.makeActive('trackers');
+        },
+
+        makeActive: function(pageName) {
+            this.views['ul.sub-menu'].$el.find('a[href="#'+ pageName +'"]').parent('li').addClass('active');
         },
 
         showView: function(view){
