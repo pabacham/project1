@@ -7,16 +7,17 @@
         templates: {},
         socket: null,
         config: {
-            serviceUrl: global.location.origin+ "/api/"
+            serviceUrl: global.location.origin+ "/api/",
+            socketOptions: {
+                reconnect: true
+            }
         }
     };
 
     var views = global.App.views,
         models = global.App.models;
 
-    global.App.socket = io.connect('', {
-        reconnect: false
-    });
+    global.App.socket = io.connect('', global.App.config.socketOptions);
 
     global.App.socket
         .on('connect', function() {
@@ -24,7 +25,18 @@
         })
         .on('disconnect', function() {
             console.log('socket disconnected');
-            setTimeout(reconnect, 500);
+        })
+        .on('logout', function() {
+            location.href = "/";
+        })
+        .on('error', function(reason) {
+            if (reason == "handshake unauthorized") {
+                console.log('you are logged out');
+            } else {
+                setTimeout(function() {
+                    global.App.socket.socket.connect();
+                }, 500);
+            }
         });
 
 
@@ -75,12 +87,5 @@
         global.app = new Router();
         Backbone.history.start();
     });
-
-    function reconnect() {
-        global.App.socket.once('error', function() {
-            setTimeout(reconnect, 500);
-        });
-        global.App.socket.socket.connect();
-    }
 
 })(window, window.$, window._, window.Backbone);

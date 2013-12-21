@@ -2,7 +2,7 @@ extends layoutApp
 
 block content
     script#headerTemplate(type='text/template')
-        a.user-exit(href='#', id='user-logout')
+        a.user-exit(href='#', id='user-logout', onclick='$("<form method=POST action=/logout>").appendTo("body").submit();return false')
             i.exit-icon
             | Выход
         nav

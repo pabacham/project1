@@ -24,13 +24,13 @@ app.use(express.json())
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 
-var MongoStore = require('connect-mongo')(express);
+var sessionStore = require('libs/sessionStore');
 
 app.use(express.session({
     secret: config.get('session:secret'), // ABCDE242342342314123421.SHA256
     key: config.get('session:key'),
     cookie: config.get('session:cookie'),
-    store: new MongoStore({mongoose_connection: mongoose.connection})
+    store: sessionStore
 }));
 
 app.use(require('middleware/sendHttpError'));
@@ -71,4 +71,5 @@ server.listen(config.get('port'), function(){
   log.info('Express server listening on port ' + config.get('port'));
 });
 
-require('./socket')(server);
+var io = require('./socket')(server);
+app.set('io', io);

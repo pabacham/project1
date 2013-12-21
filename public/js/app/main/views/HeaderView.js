@@ -5,17 +5,11 @@
         templateName: "headerTemplate",
         container: "header.header",
         initialize: function () {
-            window.App.socket.on('user:logout', function(res) {
-                console.log(res);
-            });
+
         },
 
         events: {
-            'click a#user-logout': 'logout'
-        },
 
-        logout: function() {
-            window.App.socket.emit('user:logout');
         },
 
         render: function () {
