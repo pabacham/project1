@@ -11,6 +11,12 @@
         }
     },
     "session": {
-        "secret": "bam-bam"
+        "secret": "bam-bam",
+        "key": "connect.sid",
+        "cookie": {
+            "path": "/",
+            "httpOnly": true,
+            "maxAge": null
+        }
     }
 }
