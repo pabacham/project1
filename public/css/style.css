@@ -117,7 +117,7 @@ ul.sub-menu li a:hover {background-color: #f8f3f0; border-left: 4px solid #4daf7
 .map {overflow: hidden; height: 100%;}
 
 /**/
-.object_block {overflow: hidden; height: calc(100% - 114px) ; position: absolute; width: calc(100% - 360px); background: url("../img/loading.gif") no-repeat 50% 50%; text-indent: -9999px}
+.object_block {overflow: hidden; height: calc(100% - 114px) ; position: absolute; width: calc(100% - 360px); background: url("../img/preloader.gif") no-repeat 50% 50%; text-indent: -9999px}
 .object_block:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; top: 0; left: 0; opacity: 0.4; z-index: -1;}
 
 .geo_zones_block {overflow: hidden; height: calc(100% - 114px) ; position: absolute; width: calc(100% - 360px); background: url("../img/loading.gif") no-repeat 50% 50%; text-indent: -9999px}
