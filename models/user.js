@@ -27,7 +27,7 @@ var schema = new Schema({
         required: 'Please enter password',
         validate: [
             {
-                validator: function(val) {
+                validator: function() {
                     return (this.get('password').length >= 4) ? true : false;
                 },
                 msg: 'Password should be more than 4 characters long'

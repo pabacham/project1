@@ -7,12 +7,12 @@ block content
             h1.reg Авторизация
             .form-row
                 label Email
-                input.span3(type='text', name='login-email', placeholder='email@pug.by')
+                input.span3(type='text', name='email', placeholder='email@pug.by')
             .form-row
                 label Пароль
-                input.span3(type='password', name='login-password', placeholder='****************')
+                input.span3(type='password', name='password', placeholder='****************')
             .form-row
-                button(id='login-btn', data-value='Войти в систему')
+                button(id='login-btn', data-value='Войти')
             .form-row.forgot
                 a.forgot_link(href='#register') Забыли пароль?
             .form-reg
@@ -25,16 +25,16 @@ block content
             h1.reg РЕГИСТРация
             .form-row
                 label Имя
-                input.span3(type='text', name='reg-name', placeholder='Имя')
+                input.span3(type='text', name='username', placeholder='Имя')
             .form-row
                 label Email
-                input.span3(type='text', name='reg-email', placeholder='email@pug.by')
+                input.span3(type='text', name='email', placeholder='email@pug.by')
             .form-row
                 label Пароль
-                input.span3(type='password', name='reg-first-pswd', placeholder='****************')
+                input.span3(type='password', name='password', placeholder='****************')
             .form-row
                 label Повторите пароль
-                input.span3(type='password', name='reg-sec-pswd', placeholder='****************')
+                input.span3(type='password', name='confirmPassword', placeholder='****************')
             .form-row.register_btn
                 button(data-value='Зарегестрироваться', id='register-btn')
     script#errorTemplate(type='text/template')

@@ -28,7 +28,7 @@
         },
 
         login: function() {
-            this.showView(new views.LoginView(null, this.isLoginAlreadyRendered));
+            this.showView(new views.LoginView(new models.UserLoginModel(), this.isLoginAlreadyRendered));
             this.isLoginAlreadyRendered = true;
         },
 
@@ -39,6 +39,21 @@
         showView: function(view){
             if(_.has(this.views, view.container)){
                 this.views[view.container].remove();
+            }
+
+            //if there is need to validate view model
+            if(view.bindValidation) {
+                Backbone.Validation.bind(view, {
+                    valid: function(view, attr) {
+                        console.log('valid')
+                    },
+                    invalid: function(view, attr, error) {
+                        console.log(view)
+                         console.log(attr)
+                         console.debug(error)
+                         console.log('--------')
+                    }
+                });
             }
 
             view.render();

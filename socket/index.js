@@ -5,7 +5,6 @@ var log = require('libs/log')(module),
     connect = require('connect'),
     sessionStore = require('libs/sessionStore'),
     HttpError = require('error').HttpError,
-    userRoutes = require('socket/routes/user'),
     User = require('models/user').User;
 
 function loadSession(sid, callback) {
@@ -42,7 +41,7 @@ function loadUser(session, callback) {
 
 }
 
-module.exports = function(server, app) {
+module.exports = function(server) {
     var io = require('socket.io').listen(server);
     io.set('origins', '*:*');
     io.set('logger', log);
@@ -115,6 +114,10 @@ module.exports = function(server, app) {
     });
 
     io.sockets.on('connection', function(socket) {
+        var userRoutes = require('socket/routes/user')(socket);
+
+        //socket routes
+        socket.on('test', userRoutes.talk);
 
     });
 

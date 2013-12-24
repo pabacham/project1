@@ -8,6 +8,14 @@
             password: '',
             confirmPassword: ''
 		},
+
+        validation: {
+            username: {
+                required: true,
+                msg: 'Please enter an username'
+            }
+        },
+
         url: app.config.serviceUrl + 'auth/register'
 	});
 })(window.App, window.Backbone);

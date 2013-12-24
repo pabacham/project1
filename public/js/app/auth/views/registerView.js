@@ -4,6 +4,7 @@
     views.RegisterView = views.BaseView.extend({
         templateName: "registerTemplate",
         container: "#main-section",
+        bindValidation: true,
         initialize: function (model) {
             this.model = model;
             this.listenTo(this.model, 'sync', function(e) {
@@ -11,14 +12,23 @@
             });
         },
         events: {
-            "click #register-btn": "registerUser"
+            "click #register-btn": "registerUser",
+            'keypress .form': 'processKey'
         },
+
+        processKey: function(e) {
+            if(e.which === 13){ // enter key
+                this.registerUser();
+            }
+        },
+
         registerUser: function () {
+
             var user = {
-                username: $('input[name="reg-name"]').val(),
-                email: $('input[name="reg-email"]').val(),
-                password: $('input[name="reg-first-pswd"]').val(),
-                confirmPassword: $('input[name="reg-sec-pswd"]').val()
+                username: $('input[name="username"]').val(),
+                email: $('input[name="email"]').val(),
+                password: $('input[name="password"]').val(),
+                confirmPassword: $('input[name="confirmPassword"]').val()
             };
             this.model.save(user);
         },

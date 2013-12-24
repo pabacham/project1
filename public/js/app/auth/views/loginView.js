@@ -5,7 +5,9 @@
         templateName: "loginTemplate",
         container: "#main-section",
         isAlreadyRendered: false,
+        bindValidation: true,
         initialize: function (model, isAlreadyRendered) {
+            this.model = model;
             this.isAlreadyRendered = isAlreadyRendered;
         },
         events: {
@@ -20,19 +22,22 @@
         },
 
         login: function () {
-            var formValues = {
-                email: $('input[name="login-email"]').val(),
-                password: $('input[name="login-password"]').val()
-            };
-            $.ajax({
-                url: window.App.config.serviceUrl + 'auth/login',
-                type:'POST',
-                dataType:"json",
-                data: formValues,
-                success:function (data) {
-                    data.isRegistered && (window.location.href = 'app');
-                }
+            this.model.set({
+                email: $('input[name="email"]').val(),
+                password: $('input[name="password"]').val()
             });
+
+            if(this.model.isValid(true)) {
+                $.ajax({
+                    url: this.model.url,
+                    type:'POST',
+                    dataType:"json",
+                    data: this.model.attributes,
+                    success:function (data) {
+                        data.isRegistered && (window.location.href = 'app');
+                    }
+                });
+            }
         },
         render: function () {
             var _this = this;

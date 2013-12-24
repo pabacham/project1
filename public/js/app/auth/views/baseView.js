@@ -2,6 +2,7 @@
 	"use strict";
 
 	app.views.BaseView = Backbone.View.extend({
+        bindValidation: false,
 		getTemplate: function () {
 			var template = "<h1>No Template</h1>";
 
