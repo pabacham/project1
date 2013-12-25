@@ -6,6 +6,8 @@
         container: "#main-section",
         isAlreadyRendered: false,
         bindValidation: true,
+        formContainer: '#login-form',
+
         initialize: function (model, isAlreadyRendered) {
             this.model = model;
             this.isAlreadyRendered = isAlreadyRendered;
@@ -46,10 +48,10 @@
 
             if(this.isAlreadyRendered) {
                 $(this.container).html(this.$el);
-                this.$el.find('input[name="login-email"]').focus();
+                this.$el.find('input[name="email"]').focus();
             } else {
                 $(this.container).hide().html(this.$el).delay(150).fadeIn(600, function() {
-                    _this.$el.find('input[name="login-email"]').focus();
+                    _this.$el.find('input[name="email"]').focus();
                 });
             }
 

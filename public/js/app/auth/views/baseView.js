@@ -3,6 +3,15 @@
 
 	app.views.BaseView = Backbone.View.extend({
         bindValidation: false,
+        errors: [],
+        form: null,
+        formContainer: null,
+
+        showErrors: function(errors) {
+            app.errorView.errorMessages = errors;
+            app.errorView.showContainer();
+        },
+
 		getTemplate: function () {
 			var template = "<h1>No Template</h1>";
 

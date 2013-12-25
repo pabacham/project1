@@ -4,12 +4,22 @@
     views.ValidationMessage = views.BaseView.extend({
         templateName: "validationMessage",
         container: "#message-error",
+        errorMessages: {},
         initialize: function () {
 
         },
-        render: function () {
-            this.$el.html(_.template(this.getTemplate()));
-            $(this.container).html(this.$el);
+
+        showContainer: function () {
+            console.log({ errors: this.errorMessages })
+            this.$el.html(_.template(this.getTemplate(), { errors: this.errorMessages }));
+            $(this.container).html(this.$el).addClass('open');
+
+            return this;
+        },
+
+        closeContainer: function() {
+            this.$el.html('');
+            $(this.container).removeClass('open').html(this.$el);
 
             return this;
         }

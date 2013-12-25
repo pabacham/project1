@@ -5,6 +5,7 @@
         views: {},
         models: {},
         templates: {},
+        errorView: null,
         config: {
             serviceUrl: global.location.origin+ "/api/"
         }
@@ -13,12 +14,12 @@
     var views = global.App.views,
         models = global.App.models;
 
-
     var Router = Backbone.Router.extend({
 
         initialize: function() {
             this.views = {};
             this.isLoginAlreadyRendered = false;
+            global.App.errorView = new views.ValidationMessage();
         },
 
         routes: {
@@ -28,9 +29,7 @@
         },
 
         login: function() {
-            this.showView(new views.ValidationMessage());
             this.showView(new views.LoginView(new models.UserLoginModel(), this.isLoginAlreadyRendered));
-
             this.isLoginAlreadyRendered = true;
         },
 
@@ -43,6 +42,10 @@
                 this.views[view.container].remove();
             }
 
+            //view form definition
+            view.formContainer &&
+                (view.form = $(view.formContainer));
+
             //if there is need to validate view model
             if(view.bindValidation) {
                 Backbone.Validation.bind(view, {
@@ -50,12 +53,17 @@
                         console.log('valid')
                     },
                     invalid: function(view, attr, error) {
-                        console.log(view)
-                         console.log(attr)
-                         console.debug(error)
-                         console.log('--------')
+                        //console.log(view.errors)
                     }
                 });
+
+                //on validation event
+                view.model &&
+                    view.model.bind('validated', function(isValid, model, errors) {
+                        if(!isValid) {
+                            view.showErrors(errors);
+                        }
+                    });
             }
 
             view.render();

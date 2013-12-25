@@ -24,13 +24,13 @@
 
         registerUser: function () {
 
-            var user = {
+            this.model.set({
                 username: $('input[name="username"]').val(),
                 email: $('input[name="email"]').val(),
                 password: $('input[name="password"]').val(),
                 confirmPassword: $('input[name="confirmPassword"]').val()
-            };
-            this.model.save(user);
+            });
+            this.model.save();
         },
         render: function () {
             this.$el.html(_.template(this.getTemplate()));

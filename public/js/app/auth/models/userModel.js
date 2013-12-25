@@ -13,7 +13,7 @@
             username: [
                 { required: true, msg: 'Please enter username' },
                 {
-                    range: [4, 16],
+                    rangeLength: [4, 16],
                     msg: 'Username should be more than 4 and less than 16 characters long'
                 }
             ],

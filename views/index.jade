@@ -3,7 +3,7 @@ extends layout
 block content
     section#main-section
     script#loginTemplate(type='text/template')
-        .form
+        .form(id='login-form')
             h1.reg Авторизация
             .form-row
                 label Email
@@ -21,7 +21,7 @@ block content
                 a.reg_link(href='#register') Зарегистрируйся
 
     script#registerTemplate(type='text/template')
-        .form
+        .form(id='register-form')
             h1.reg РЕГИСТРация
             .form-row
                 label Имя
@@ -52,5 +52,7 @@ block content
                 a(href='#login') Залогинится
     script#validationMessage(type='text/template')
         ul.wrap-list
-            li Ваше сообщение отправлено успешно. Ожидайте, мы с вами свяжемся.
-        a.close_message
+            <% _.each(errors, function(val){ %>
+            li <%= val%>
+            <% }); %>
+        a.close-message
