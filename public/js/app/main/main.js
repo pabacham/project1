@@ -64,6 +64,7 @@
             this.showView(new views.MapSliderView());
             this.showView(new views.MapView());
             this.makeActive('map');
+            this.showView(new views.ValidationMessage());
         },
 
         objects: function() {

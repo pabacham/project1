@@ -7,10 +7,10 @@ block content
             h1.reg Авторизация
             .form-row
                 label Email
-                input.span3(type='text', name='email', placeholder='email@pug.by')
+                input(type='text', name='email', placeholder='email@pug.by')
             .form-row
                 label Пароль
-                input.span3(type='password', name='password', placeholder='****************')
+                input(type='password', name='password', placeholder='****************')
             .form-row
                 button(id='login-btn', data-value='Войти')
             .form-row.forgot
@@ -25,16 +25,16 @@ block content
             h1.reg РЕГИСТРация
             .form-row
                 label Имя
-                input.span3(type='text', name='username', placeholder='Имя')
+                input(type='text', name='username', placeholder='Имя')
             .form-row
                 label Email
-                input.span3(type='text', name='email', placeholder='email@pug.by')
+                input(type='text', name='email', placeholder='email@pug.by')
             .form-row
                 label Пароль
-                input.span3(type='password', name='password', placeholder='****************')
+                input(type='password', name='password', placeholder='****************')
             .form-row
                 label Повторите пароль
-                input.span3(type='password', name='confirmPassword', placeholder='****************')
+                input(type='password', name='confirmPassword', placeholder='****************')
             .form-row.register_btn
                 button(data-value='Зарегестрироваться', id='register-btn')
     script#errorTemplate(type='text/template')
@@ -42,11 +42,15 @@ block content
             h1.reg Ошибка
             .form-row
                 label Email
-                input.span3(type='text', name='email', placeholder='Email@pug.by')
+                input(type='text', name='email', placeholder='Email@pug.by')
             .form-row
                 label Пароль
-                input.span3(type='password', name='first-pswd', placeholder='****************')
+                input(type='password', name='first-pswd', placeholder='****************')
             .form-row
                 a.reg_link(href='#register') Зарегистрироваться
             .form-row
                 a(href='#login') Залогинится
+    script#validationMessage(type='text/template')
+        ul.wrap-list
+            li Ваше сообщение отправлено успешно. Ожидайте, мы с вами свяжемся.
+        a.close_message

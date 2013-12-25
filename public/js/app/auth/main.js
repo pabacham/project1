@@ -28,7 +28,9 @@
         },
 
         login: function() {
+            this.showView(new views.ValidationMessage());
             this.showView(new views.LoginView(new models.UserLoginModel(), this.isLoginAlreadyRendered));
+
             this.isLoginAlreadyRendered = true;
         },
 

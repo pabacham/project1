@@ -1,8 +1,7 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
-    link(rel='stylesheet', href='/css/bootstrap.min.css')
+
     link(rel='stylesheet', href='/css/ie_style.css')
     link(rel='stylesheet', href='/css/nanoscroller.css')
     link(rel='stylesheet', href='/css/reset.css')
@@ -19,12 +18,12 @@ html
         .logo
            a(href='#')
             img(src='img/logo.png')
-
+    #message-error
+    #message-info
     block content
 
     footer
     script(src='js/libs/jquery.js')
-    script(src='js/libs/bootstrap.min.js')
     script(src='js/libs/underscore.js')
     script(src='js/libs/backbone.js')
     script(src='js/libs/backbone.validation.js')
@@ -33,6 +32,8 @@ html
     script(src='js/app/auth/models/userModel.js')
     script(src='js/app/auth/models/userLoginModel.js')
 
+
     script(src='js/app/auth/views/baseView.js')
     script(src='js/app/auth/views/loginView.js')
     script(src='js/app/auth/views/registerView.js')
+    script(src='js/app/main/views/ValidationMessage.js')
