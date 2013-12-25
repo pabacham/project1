@@ -68,6 +68,7 @@
         },
 
         objects: function() {
+            this.showView(new views.ObjectSliderView());
             this.showView(new views.ObjectsView());
             this.makeActive('objects');
             global.App.socket.emit('test');
