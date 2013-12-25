@@ -44,7 +44,7 @@ section {margin: 0 auto; background: #fff; border-radius: 5px; width: 292px;}
 .form {position: relative;font-family: Arial, Tahoma, Verdana, sans-serif; padding: 0 0 1px;}
 .form-row.forgot {text-align: center; padding-bottom: 10px;}
 .form-reg {height: 65px; line-height: 65px; position: absolute; bottom: -80px; width: 100%; border-radius: 5px; background: #fff; text-align: center;}
-.form-reg > p {display: inline-block; margin-right: 10px; color: #a3958a; font-weight: 600;}
+.form-reg > p {display: inline-block; margin-right: 10px; color: #a3958a; font-weight: bold;}
 .form-row {padding: 0 10px;}
 .form-row button {position: relative; margin: 14px 0; overflow: hidden; background: #51A351; color: #fff; width: 100%; height: 40px; border-radius: 5px; border: 0 none;}
 .form-row.register_btn button:before {background: url("../img/sprite.png") no-repeat -74px -212px;}
@@ -142,8 +142,9 @@ ul.sub-menu li a:hover {background-color: #f8f3f0; border-left: 4px solid #4daf7
 .map {overflow: hidden; height: 100%;}
 
 /**/
-.object_block {overflow: hidden; height: calc(100% - 114px) ; position: absolute; width: calc(100% - 360px); background: url("../img/preloader.gif") no-repeat 50% 50%; text-indent: -9999px}
-.object_block:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; top: 0; left: 0; opacity: 0.4; z-index: -1;}
+.object-header { background-color: #FFFFFF; border-radius: 5px 5px 0 0; display: block; height: 50px; overflow: hidden;}
+.object-content {overflow: hidden; height: calc(100% - 166px) ; position: absolute; width: calc(100% - 360px); background: #f8f3f0; text-indent: -9999px}
+.object-content:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; top: 0; left: 0; opacity: 0.4; z-index: -1; }
 
 .geo_zones_block {overflow: hidden; height: calc(100% - 114px) ; position: absolute; width: calc(100% - 360px); background: url("../img/loading.gif") no-repeat 50% 50%; text-indent: -9999px}
 .geo_zones_block:after {content: ''; position: absolute; width: 100%; height: 100%; background: #fff; top: 0; left: 0; opacity: 0.4; z-index: -1;}
@@ -203,6 +204,7 @@ ul#object-detail li.selected a:after { -moz-opacity: 1; -khtml-opacity: 1; opaci
 #message-error.open {background: #d84f4f; display: block; top: 0;}
 #message-info.open {background: #4daf7c; display: block;}
 #message-error li, #message-info li {text-align: center; padding: 0 20px; font-size: 14px; color: #fff; font-weight: bold;}
+.close-message {height: 11px; width: 11px; background: url("../img/sprite.png") -24px -108px no-repeat; position: absolute; right: 10px; top: 10px; padding: 3px;}
 
 @media (min-width:768px) and (max-width:979px) {section {width: 240px;} .form-row input {width: 206px;}}
 @media (min-width:980px) and (max-width:1198px) {section {width: 240px;}}

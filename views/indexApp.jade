@@ -114,13 +114,15 @@ block content
                     a.hide-tab(href='javascript:void(0)') Скрыть
 
     script#objectsTemplate(type='text/template')
-        div.object_block Objects
+        div.object-header
+        div.object-content
+
 
     script#geoZonesTemplate(type='text/template')
-        div.geo_zones_block Geo Zones
+        div.geo-zones-block Geo-Zones
 
     script#trackersTemplate(type='text/template')
-        div.trackers_block Trackers
+        div.trackers-block Trackers
 
     script#mapSliderTemplate(type='text/template')
         #add-tracker.slider-body
@@ -146,4 +148,4 @@ block content
     script#validationMessage(type='text/template')
         ul.wrap-list
             li Ваше сообщение отправлено успешно. Ожидайте, мы с вами свяжемся.
-        a.close_message
+        a.close-message(href='#')
