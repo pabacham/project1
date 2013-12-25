@@ -6,8 +6,15 @@
         container: "#main-section",
         bindValidation: true,
         initialize: function (model) {
+            var _this = this;
             this.model = model;
-            this.listenTo(this.model, 'sync', function(e) {
+
+            this.listenTo(this.model, 'sync', function(model, response) {
+                if(!response.success) {
+                    _this.showErrors(response.errors);
+                    return;
+                }
+                _this.hideErrors();
                 window.location.hash = '#';
             });
         },

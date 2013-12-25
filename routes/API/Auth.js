@@ -35,7 +35,7 @@ function Auth () {
 
     this.logout = function(req, res) {
         req.session.destroy();
-        res.send({result: true});
+        res.send({success: true});
     };
 
     this.register = function(req, res, next) {
@@ -52,7 +52,7 @@ function Auth () {
         }, function(err) {
             if (err) return next(err);
 
-            res.send({result: true});
+            res.send({success: true});
         });
     };
 }

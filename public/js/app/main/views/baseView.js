@@ -2,6 +2,29 @@
 	"use strict";
 
 	app.views.BaseView = Backbone.View.extend({
+        bindValidation: false,
+
+        showErrors: function(errors) {
+            var _this = this;
+            app.errorView.errorMessages = {};
+
+            _.each(errors, function(value, key) {
+                if(typeof value == 'object') {
+                    app.errorView.errorMessages[key] = value.message;
+                } else {
+                    app.errorView.errorMessages[key] = value;
+                }
+                _this.$el.find('input[name="'+ key +'"]').addClass('error');
+            });
+
+            app.errorView.showContainer();
+        },
+
+        hideErrors: function() {
+            app.errorView &&
+                app.errorView.closeContainer();
+        },
+
 		getTemplate: function () {
 			var template = "<h1>No Template</h1>";
 

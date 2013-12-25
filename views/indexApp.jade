@@ -213,5 +213,7 @@ block content
             .slider-close
     script#validationMessage(type='text/template')
         ul.wrap-list
-            li Ваше сообщение отправлено успешно. Ожидайте, мы с вами свяжемся.
-        a.close-message(href='#')
+            <% _.each(errors, function(val){ %>
+            li <%= val%>
+            <% }); %>
+        a.close-message(href='javascript: void(0)')

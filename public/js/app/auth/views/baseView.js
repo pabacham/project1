@@ -3,13 +3,25 @@
 
 	app.views.BaseView = Backbone.View.extend({
         bindValidation: false,
-        errors: [],
-        form: null,
-        formContainer: null,
 
         showErrors: function(errors) {
-            app.errorView.errorMessages = errors;
+            var _this = this;
+            app.errorView.errorMessages = {};
+
+            _.each(errors, function(value, key) {
+                if(typeof value == 'object') {
+                    app.errorView.errorMessages[key] = value.message;
+                } else {
+                    app.errorView.errorMessages[key] = value;
+                }
+                _this.$el.find('input[name="'+ key +'"]').addClass('error');
+            });
+
             app.errorView.showContainer();
+        },
+
+        hideErrors: function() {
+            app.errorView.closeContainer();
         },
 
 		getTemplate: function () {

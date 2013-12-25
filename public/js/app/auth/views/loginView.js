@@ -6,7 +6,6 @@
         container: "#main-section",
         isAlreadyRendered: false,
         bindValidation: true,
-        formContainer: '#login-form',
 
         initialize: function (model, isAlreadyRendered) {
             this.model = model;
@@ -24,6 +23,8 @@
         },
 
         login: function () {
+            var _this = this;
+
             this.model.set({
                 email: $('input[name="email"]').val(),
                 password: $('input[name="password"]').val()
@@ -36,7 +37,11 @@
                     dataType:"json",
                     data: this.model.attributes,
                     success:function (data) {
-                        data.isRegistered && (window.location.href = 'app');
+                        if(data.isRegistered) {
+                            window.location.href = 'app';
+                        } else if(data.errorMessage) {
+                            _this.showErrors({ email: data.errorMessage});
+                        }
                     }
                 });
             }

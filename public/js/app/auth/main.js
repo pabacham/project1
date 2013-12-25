@@ -42,18 +42,11 @@
                 this.views[view.container].remove();
             }
 
-            //view form definition
-            view.formContainer &&
-                (view.form = $(view.formContainer));
-
             //if there is need to validate view model
             if(view.bindValidation) {
                 Backbone.Validation.bind(view, {
                     valid: function(view, attr) {
-                        console.log('valid')
-                    },
-                    invalid: function(view, attr, error) {
-                        //console.log(view.errors)
+                        view.$el.find('input[name="'+ attr +'"]').removeClass('error');
                     }
                 });
 
@@ -66,6 +59,7 @@
                     });
             }
 
+            view.hideErrors();
             view.render();
 
             this.views[view.container] = view;

@@ -6,6 +6,7 @@
         models: {},
         templates: {},
         socket: null,
+        errorView: null,
         config: {
             serviceUrl: global.location.origin+ "/api/",
             socketOptions: {
@@ -47,6 +48,7 @@
 
         initialize: function() {
             this.views = {};
+            global.App.errorView = new views.ValidationMessage();
             this.showView(new views.HeaderView());
             this.showView(new views.SubMenuView());
         },
@@ -93,6 +95,24 @@
                 this.views[view.container].remove();
             }
 
+            //if there is need to validate view model
+            if(view.bindValidation) {
+                Backbone.Validation.bind(view, {
+                    valid: function(view, attr) {
+                        view.$el.find('input[name="'+ attr +'"]').removeClass('error');
+                    }
+                });
+
+                //on validation event
+                view.model &&
+                view.model.bind('validated', function(isValid, model, errors) {
+                    if(!isValid) {
+                        view.showErrors(errors);
+                    }
+                });
+            }
+
+            view.hideErrors();
             view.render();
 
             this.views[view.container] = view;

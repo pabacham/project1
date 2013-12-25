@@ -8,7 +8,6 @@ var mongoose = require('libs/mongoose'),
 var schema = new Schema({
     username: {
         type: String,
-        unique: true,
         required: 'Please enter username',
         validate: [
             validate({message: 'Username should be more than 4 and less than 16 characters long'}, 'len', 4, 16)
@@ -69,10 +68,10 @@ schema.statics.authorize = function(email, password, callback) {
                 if(user.checkPassword(password)) {
                     callback(null, user);
                 } else {
-                    callback({errorMessage: 'Incorrect password'});
+                    callback({errorMessage: 'Incorrect password or email'});
                 }
             } else {
-                callback({errorMessage: 'User not found'});
+                callback({errorMessage: 'Incorrect password or email'});
             }
         }
     ], callback);
