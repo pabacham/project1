@@ -32,86 +32,25 @@ block content
             a.menu-tracker(href='#trackers') Трекеры
 
     script#mapTemplate(type='text/template')
-        .map-header
-            .object-on-map
-                span.user-block
-                    a.close-user(href='#')
-                    | Федя
-                span.user-block.one
-                    a.close-user(href='#')
-                    | Тёма
-                span.user-block.two
-                    a.close-user(href='#')
-                    | Оля
-                span.auto
-                span#map_slider_open +
-            span.title-map-header Объекты на карте:
+        #map-header.map-header
         .place-map
-            .map
-                iframe(width='100%', height='100%', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', src='https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%93%D0%BE%D1%80%D0%B5%D1%86%D0%BA%D0%BE%D0%B3%D0%BE,+%D0%9C%D0%B8%D0%BD%D1%81%D0%BA,+%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D1%8C&aq=1&oq=%D0%93%D0%BE%D1%80%D0%B5%D1%86&sll=53.800651,-4.064941&sspn=11.357702,33.815918&ie=UTF8&hq=%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%93%D0%BE%D1%80%D0%B5%D1%86%D0%BA%D0%BE%D0%B3%D0%BE,&hnear=Minsk,+Belarus&t=m&ll=53.888154,27.501869&spn=0.097124,0.219727&z=12&output=embed')
-            .tab-on-map.hide-tab-content
-                ul#object-detail
-                    li#information.selected
-                        a(href='#', data-linked='#data-information') Информация
-                    li#action-log
-                        a(href='#', data-linked='#data-action-log') Журнал действий
-                    li#notification
-                        a(href='#', data-linked='#data-notification') Оповещения
-                #data-information.tab-for-detail
-                    a.hide-tab(href='javascript:void(0)') Скрыть
-                    .img-tab
-                        img(src='img/pict/photo.png', alt='')
-                    h2 Жена
-                    .tab-content.nano
-                        .content
-                            p
-                                | Последнее обновление информации:
-                                span 21.05.2013 в 19:00
-                            .item-box
-                                p Скорость
-                                span.green.speed
-                                    | 7
-                                    i km/h
-                            .item-box
-                                p Уровень сигнала
-                                span.green.signal
-                                    | 60%
-                            .clear
-                            .item-box
-                                p Заряд батареи
-                                span.green.low.battery
-                                    | 20%
-                            .item-box
-                                p GPRS
-                                span.green.gprs
-                                    | ON
-                            .clear
-                            .item-box
-                                p Скорость
-                                span.green.low.speed
-                                    | 0
-                                    i km/h
-                            .item-box
-                                p Уровень сигнала
-                                span.green.low.signal
-                                    | 20%
-                            .clear
-                            .item-box
-                                p Заряд батареи
-                                span.green.battery
-                                    | 80%
-                            .item-box
-                                p GPRS
-                                span.green.low.gprs
-                                    | OFF
-                #data-action-log.tab-for-detail(style='display: none;')
-                    | the second tab
-                    br
-                    a.hide-tab(href='javascript:void(0)') Скрыть
-                #data-notification.tab-for-detail(style='display: none;')
-                    | the third tab
-                    br
-                    a.hide-tab(href='javascript:void(0)') Скрыть
+            #map-canvas(style='height: 100%;')
+            #map-tabs
+
+    script#mapHeaderTemplate(type='text/template')
+        .object-on-map
+            span.user-block
+                a.close-user(href='#')
+                | Федя
+            span.user-block.one
+                a.close-user(href='#')
+                | Тёма
+            span.user-block.two
+                a.close-user(href='#')
+                | Оля
+            span.auto
+            span#map_slider_open +
+        span.title-map-header Объекты на карте:
 
     script#objectsTemplate(type='text/template')
         div.object-header
@@ -217,3 +156,68 @@ block content
             li <%= val%>
             <% }); %>
         a.close-message(href='javascript: void(0)')
+
+    script#mapTabsTemplate(type='text/template')
+        .tab-on-map.hide-tab-content
+            ul#object-detail
+                li#information.selected
+                    a(href='#', data-linked='#data-information') Информация
+                li#action-log
+                    a(href='#', data-linked='#data-action-log') Журнал действий
+                li#notification
+                    a(href='#', data-linked='#data-notification') Оповещения
+            #data-information.tab-for-detail
+                a.hide-tab(href='javascript:void(0)') Скрыть
+                .img-tab
+                    img(src='img/pict/photo.png', alt='')
+                h2 Жена
+                .tab-content.nano
+                    .content
+                        p
+                            | Последнее обновление информации:
+                            span 21.05.2013 в 19:00
+                        .item-box
+                            p Скорость
+                            span.green.speed
+                                | 7
+                                i km/h
+                        .item-box
+                            p Уровень сигнала
+                            span.green.signal
+                                | 60%
+                        .clear
+                        .item-box
+                            p Заряд батареи
+                            span.green.low.battery
+                                | 20%
+                        .item-box
+                            p GPRS
+                            span.green.gprs
+                                | ON
+                        .clear
+                        .item-box
+                            p Скорость
+                            span.green.low.speed
+                                | 0
+                                i km/h
+                        .item-box
+                            p Уровень сигнала
+                            span.green.low.signal
+                                | 20%
+                        .clear
+                        .item-box
+                            p Заряд батареи
+                            span.green.battery
+                                | 80%
+                        .item-box
+                            p GPRS
+                            span.green.low.gprs
+                                | OFF
+            #data-action-log.tab-for-detail(style='display: none;')
+                | the second tab
+                br
+                a.hide-tab(href='javascript:void(0)') Скрыть
+            #data-notification.tab-for-detail(style='display: none;')
+                | the third tab
+                br
+                a.hide-tab(href='javascript:void(0)') Скрыть
