@@ -5,7 +5,6 @@
         templateName: "objectSliderTemplate",
         container: "#slider-block",
         initialize: function () {
-
         },
 
         events: {
@@ -14,23 +13,19 @@
             'click .preview' : "openPicker"
         },
 
-        addColor: function(e) {
-            this.picker();
-            var bCanPreview;
-            bCanPreview = !bCanPreview;
+        addColor: function() {
+            var currentColor = this.$el.find('#hexVal').val();
+            $('.preview').css('background', currentColor);
+            this.$el.find('.colorpicker').toggleClass('open');
         },
 
-        openPicker: function(e) {
-            this.picker();
-            var bCanPreview;
-            this.$el.find('.colorpicker').fadeToggle("slow", "linear");
-            bCanPreview = true;
+        openPicker: function() {
+            this.$el.find('.colorpicker').toggleClass('open');
         },
 
-        picker: function() {
-                    var bCanPreview = true; // can preview
 
-                    // create canvas and context objects
+        canvasCreate: function(){
+
                     var canvas = document.getElementById('picker');
                     var ctx = canvas.getContext('2d');
 
@@ -45,7 +40,7 @@
                     image.src = imageSrc;
 
                     $('#picker').mousemove(function(e) { // mouse move handler
-                        if (bCanPreview) {
+                        if (true){
                             // get coordinates of current position
                             var canvasOffset = $(canvas).offset();
                             var canvasX = Math.floor(e.pageX - canvasOffset.left);
@@ -57,10 +52,7 @@
 
                             // update preview color
                             var pixelColor = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
-                            $('.preview').css('backgroundColor', pixelColor);
-
-                            // update controls
-                            $('#rgbVal').val(pixel[0]+','+pixel[1]+','+pixel[2]);
+                            $('.preview').css('background', pixelColor);
 
                             var dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
                             $('#hexVal').val('#' + ('0000' + dColor.toString(16)).substr(-6));
@@ -75,7 +67,7 @@
         render: function () {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
-
+            this.canvasCreate();
             return this;
         }
     });

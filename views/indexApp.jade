@@ -139,13 +139,19 @@ block content
         div.trackers-block Trackers
 
     script#mapSliderTemplate(type='text/template')
-        #add-tracker.slider-body
+        #add-tracker.slider-body.slider-map
             h2 Добавление нового трекера
             p
                 | На этой странице вы можете добавить новое трекерное устройство. Все поля обязательны для заполнения.
             .form-row
                 label Модель трекера
-                input.txt(type='text', placeholder='Huawei 12387643 Lorem Ipsum')
+                select.select
+                    option
+                            | Huawei 0223422
+                        option
+                            | Huawei 0223422
+                        option
+                            | Huawei 0223422
             .form-row
                 label Серийный номер трекера
                 input.txt(type='text', placeholder='2387643534534534')
@@ -156,12 +162,12 @@ block content
                 label Мобильный номер SIM карты
                 input.txt(type='text', placeholder='+375257923456')
             .btn-box
-                a.btn01(href='#') Добавить
-                a.btn02(href='#') Отменить
+                a.btn01(href='#', data-value="Добавить")
+                a.btn02(href='#', data-value="Отменить")
             .slider-close
     script#objectSliderTemplate(type='text/template')
-        #add-tracker.slider-body
-            h2 Добавление нового трекера
+        #add-tracker.slider-body.slider-object
+            h2 Добавление нового объекта
             p
                 | На этой странице вы можете добавить новый объект. Выберите тип Пага и заполните соответствующие поля.
             .form-row.clear-fix
@@ -194,22 +200,19 @@ block content
                             | Животное
             .form-row.clear-fix
                 .form-cell
-                    label Имя нового трекера
-                    input.txt(type='text', placeholder='Трекер для сына')
-            .form-row
-                label Цвет объета
-                    input.txt(type='text', placeholder='+375257923456')
-                .preview
-                .colorpicker
-                    canvas#picker(var="1" width="300" height="300")
-                    .controls
-                        div
-                            label
-                             input#hexVal(type="text")
+                    label Имя объекта
+                    input.txt(type='text', placeholder='Муж')
+                .form-cell
+                    label Имя объекта
+                    .picker-wrap.clear-fix
+                        input#hexVal.txt(type='text', placeholder='Выберите цвет')
+                        .preview
+                        .colorpicker
+                            canvas#picker(var="1" width="281" height="278")
 
             .btn-box
-                a.btn01(href='#') Добавить
-                a.btn02(href='#') Отменить
+                a.btn01(href='#', data-value="Добавить")
+                a.btn02(href='#', data-value="Отменить")
             .slider-close
     script#validationMessage(type='text/template')
         ul.wrap-list
