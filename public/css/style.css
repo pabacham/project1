@@ -100,7 +100,7 @@ section {margin: 0 auto; background: #fff; border-radius: 5px; width: 292px;}
 .slider-body.slider-map .select2-container .select2-choice {width: 292px;}
 .slider-body.slider-map .select2-container .select2-choice > .select2-chosen {width: 250px;}
 
-.slider-body .slider-object .form-row input[type="text"] {width: 135px;}
+.slider-body.slider-object .form-row input[type="text"] {width: 135px;}
 
 section button {height: 40px; margin: 14px 0 12px 0; background: #4daf7c!important; font-size: 15px; cursor: pointer!important; opacity: 1!important;}
 
@@ -108,10 +108,10 @@ section button {height: 40px; margin: 14px 0 12px 0; background: #4daf7c!importa
 .form-cell:first-child {margin-right: 15px;}
 
 .picker-wrap {position: relative;}
-.picker-wrap input {float: left; width: 127px;}
-.preview {cursor: pointer; height: 24px; width: 24px; float: left;  margin: 3px 0 0 -30px; border-radius: 100%; background: url("../img/sprite.png") no-repeat -76px -462px; position: relative;}
+.slider-body.slider-object .form-row .picker-wrap input {float: left; width: 127px;}
+.preview {cursor: pointer; height: 24px; width: 24px; float: left;  margin: 5px 0 0 -30px; border-radius: 100%; background: url("../img/sprite.png") no-repeat -76px -462px; position: relative;}
 .preview:after {position: absolute; content: ''; width: 127px;  height: 100%; left: -130px; display: block;}
-.colorpicker {position: absolute; visibility: hidden; left: -300px; top: -150px; background: #fff; border-radius: 100%; opacity: 0;}
+.colorpicker {position: absolute; visibility: hidden; left: -485px; top: -150px; background: #fff; border-radius: 100%; opacity: 0;}
 .colorpicker.open {visibility: visible; opacity: 1;}
 
 /*
