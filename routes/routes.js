@@ -3,13 +3,11 @@ var checkAuth = require('middleware/checkAuth');
 module.exports = function(app) {
 
     app.get('/', function(req, res) {
-        res.render('index', {
-            title: 'PUG'
-        });
+        res.render('auth/index', {});
     });
 
     app.get('/app', checkAuth, function(req, res) {
-        res.render('indexApp', {});
+        res.render('app/index', {});
     });
 
     app.post('/logout', checkAuth, function(req, res, next) {
@@ -23,9 +21,6 @@ module.exports = function(app) {
             res.redirect('/');
         });
     });
-
-
-
 
     app.post('/api/auth/login', require('./API/Auth').login);
     app.post('/api/auth/register', require('./API/Auth').register);

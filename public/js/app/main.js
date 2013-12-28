@@ -8,9 +8,13 @@ requirejs.config({
         async: 'libs/require/async',
         jquery: 'libs/jquery/jquery',
         underscore: 'libs/underscore/underscore',
-        backbone: 'libs/backbone/backbone'
+        backbone: 'libs/backbone/backbone',
+        socketio: '../../socket.io/socket.io'
     },
     shim: {
+        'socketio': {
+            exports: 'io'
+        },
         'backbone': {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'

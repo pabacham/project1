@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    include templates/mapTemplates
+    include templates/objectTemplates
+    script#headerTemplate(type='text/template')
+        div.wrap_btn
+            a.user-exit(href='#', id='user-logout', onclick='$("<form method=POST action=/logout>").appendTo("body").submit();return false')
+                | Выход
+        nav
+            ul.top-menu
+                li
+                    a(href='#')
+                        img(src='img/logo.png')
+                li.active
+                    a.panel(href='#')
+                        | Панель управления
+                li
+                    a.account(href='#')
+                        | Аккаунт
+                li
+                    a.statistics(href='#')
+                        | Статистика
+
+    script#subMenuTemplate(type='text/template')
+        li Панель управления
+        li.one
+            a.menu-map(href='#map') Карта
+        li.two
+            a.menu-object(href='#objects') Объекты
+        li.three
+            a.menu-geozone(href='#geozones') Геозоны
+        li.four
+            a.menu-tracker(href='#trackers') Трекеры
+
+
+    script#geoZonesTemplate(type='text/template')
+        div.geo-zones-block Geo-Zones
+
+    script#trackersTemplate(type='text/template')
+        div.trackers-block Trackers
+
+
+    script#validationMessage(type='text/template')
+        ul.wrap-list
+            <% _.each(errors, function(val){ %>
+            li <%= val%>
+            <% }); %>
+        a.close-message(href='javascript: void(0)')
+
+

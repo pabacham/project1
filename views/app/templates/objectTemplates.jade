@@ -1,0 +1,77 @@
+script#objectsTemplate(type='text/template')
+    div.object-header
+        a#add-new-object Добавить новый объект
+    div.object-content
+        ul.wrap-list-object
+            li
+                a.delete-object
+                p Жена
+                div.wrap-img-object
+                    img(src="img/pict/photo.png" alt='')
+                div.wrap-btn
+                    a.map-link(href="#")
+                    a.panel-link(href="#")
+                    a.statistics-link(href="#")
+            li.list-new-object
+                p Новый объект
+                div.wrap-img-object
+                    a.add-new-object Добавить новый объект
+    div.object-info
+
+script#objectSliderTemplate(type='text/template')
+    #add-tracker.slider-body.slider-object
+        h2 Добавление нового объекта
+        p
+            | На этой странице вы можете добавить новый объект. Выберите тип Пага и заполните соответствующие поля.
+        .form-row.clear-fix
+            label Тип Пага
+            .form-row.radio-wrap
+                input#mobile-pug.radio(type='radio', name='pug')
+                label.radio-label(for="mobile-pug")
+                    | Мобильное приложение
+                input#tracker-pug.radio(type='radio', name='pug' checked)
+                label.radio-label(for="tracker-pug")
+                    | Трекер
+        .form-row.clear-fix
+            .form-cell
+                label Трекер
+                select.select
+                    option
+                        | Huawei 0223422
+                    option
+                        | Huawei 0223422
+                    option
+                        | Huawei 0223422
+            .form-cell
+                label Тип оъекта
+                select.select
+                    option
+                        | Машина
+                    option
+                        | Человек
+                    option
+                        | Животное
+        .form-row.clear-fix
+            .form-cell
+                label Имя объекта
+                input.txt(type='text', placeholder='Муж')
+            .form-cell
+                label Цвет объета
+                .picker-wrap.clear-fix
+                    input#hexVal.txt(type='text', placeholder='Выберите цвет')
+                    .preview
+                    .colorpicker
+                        canvas#picker(var="1" width="281" height="278")
+        .add-photo
+            .form-row.clear-fix
+                label Фотография объекта
+                .wrap-photo
+                .wrap-photo-btn
+                    label
+                        input(type="file", onchange='document.getElementById("fileName").value=this.value')
+                        input#fileName(type="text", value="Выбрать фотографию")
+                    button Удалить фотографию
+        .btn-box
+            a.btn01(href='#', data-value="Добавить")
+            a.btn02(href='#', data-value="Отменить")
+        .slider-close

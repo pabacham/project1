@@ -1,0 +1,113 @@
+script#mapTemplate(type='text/template')
+    #map-header.map-header
+    .place-map
+        #map-canvas(style='height: 100%;')
+        #map-tabs
+
+script#mapHeaderTemplate(type='text/template')
+    .object-on-map
+        span.user-block
+            a.close-user(href='#')
+            | Федя
+        span.user-block.one
+            a.close-user(href='#')
+            | Тёма
+        span.user-block.two
+            a.close-user(href='#')
+            | Оля
+        span.auto
+        span#map_slider_open +
+    span.title-map-header Объекты на карте:
+
+script#mapSliderTemplate(type='text/template')
+    #add-tracker.slider-body.slider-map
+        h2 Добавление нового трекера
+        p
+            | На этой странице вы можете добавить новое трекерное устройство. Все поля обязательны для заполнения.
+        .form-row
+            label Модель трекера
+            select.select
+                option
+                        | Huawei 0223422
+                    option
+                        | Huawei 0223422
+                    option
+                        | Huawei 0223422
+        .form-row
+            label Серийный номер трекера
+            input.txt(type='text', placeholder='2387643534534534')
+        .form-row
+            label Имя нового трекера
+            input.txt(type='text', placeholder='Трекер для сына')
+        .form-row
+            label Мобильный номер SIM карты
+            input.txt(type='text', placeholder='+375257923456')
+        .btn-box
+            a.btn01(href='#', data-value="Добавить")
+            a.btn02(href='#', data-value="Отменить")
+        .slider-close
+
+script#mapTabsTemplate(type='text/template')
+    .tab-on-map.hide-tab-content
+        ul#object-detail
+            li#information.selected
+                a(href='#', data-linked='#data-information') Информация
+            li#action-log
+                a(href='#', data-linked='#data-action-log') Журнал действий
+            li#notification
+                a(href='#', data-linked='#data-notification') Оповещения
+        #data-information.tab-for-detail
+            a.hide-tab(href='javascript:void(0)') Скрыть
+            .img-tab
+                img(src='img/pict/photo.png', alt='')
+            h2 Жена
+            .tab-content.nano
+                .content
+                    p
+                        | Последнее обновление информации:
+                        span 21.05.2013 в 19:00
+                    .item-box
+                        p Скорость
+                        span.green.speed
+                            | 7
+                            i km/h
+                    .item-box
+                        p Уровень сигнала
+                        span.green.signal
+                            | 60%
+                    .clear
+                    .item-box
+                        p Заряд батареи
+                        span.green.low.battery
+                            | 20%
+                    .item-box
+                        p GPRS
+                        span.green.gprs
+                            | ON
+                    .clear
+                    .item-box
+                        p Скорость
+                        span.green.low.speed
+                            | 0
+                            i km/h
+                    .item-box
+                        p Уровень сигнала
+                        span.green.low.signal
+                            | 20%
+                    .clear
+                    .item-box
+                        p Заряд батареи
+                        span.green.battery
+                            | 80%
+                    .item-box
+                        p GPRS
+                        span.green.low.gprs
+                            | OFF
+        #data-action-log.tab-for-detail(style='display: none;')
+            | the second tab
+            br
+            a.hide-tab(href='javascript:void(0)') Скрыть
+        #data-notification.tab-for-detail(style='display: none;')
+            | the third tab
+            br
+            a.hide-tab(href='javascript:void(0)') Скрыть
