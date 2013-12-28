@@ -1,7 +1,10 @@
-(function (window, $, _, views) {
-    "use strict";
+define([
+    'jquery',
+    'underscore',
+    'views/BaseView'
+], function($, _, BaseView){
 
-    views.MapTabsView = views.BaseView.extend({
+    var MapTabsView = BaseView.extend({
         templateName: "mapTabsTemplate",
         container: "#map-tabs",
         initialize: function () {
@@ -28,5 +31,7 @@
             return this;
         }
     });
-})(window, window.$, window._, window.App.views);
 
+    return MapTabsView;
+
+});

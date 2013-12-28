@@ -1,7 +1,11 @@
-(function (window, $, _, views) {
+define([
+    'jquery',
+    'underscore',
+    'views/BaseView'
+], function($, _, BaseView){
     "use strict";
 
-    views.SubMenuView = views.BaseView.extend({
+    var SubMenuView = BaseView.extend({
         templateName: "subMenuTemplate",
         container: "ul.sub-menu",
         initialize: function () {
@@ -22,5 +26,7 @@
             return this;
         }
     });
-})(window, window.$, window._, window.App.views);
 
+    return SubMenuView;
+
+});
