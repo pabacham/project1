@@ -1,6 +1,6 @@
 (function (window, $, _, views) {
     "use strict";
-
+    console.log(google.maps)
     views.MapView = views.BaseView.extend({
         templateName: "mapTemplate",
         container: ".map-block",

@@ -149,6 +149,16 @@ block content
                         .colorpicker
                             canvas#picker(var="1" width="281" height="278")
 
+            .add-photo
+                .form-row.clear-fix
+                    label Фотография объекта
+                    .wrap-photo
+
+                    .wrap-photo-btn
+                        label
+                            input(type="file", onchange='document.getElementById("fileName").value=this.value')
+                            input#fileName(type="text", value="Выбрать фотографию")
+                        button Удалить фотографию
             .btn-box
                 a.btn01(href='#', data-value="Добавить")
                 a.btn02(href='#', data-value="Отменить")
