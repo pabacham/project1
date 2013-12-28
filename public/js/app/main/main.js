@@ -18,6 +18,7 @@
     var views = global.App.views,
         models = global.App.models;
 
+
     global.App.socket = io.connect('', global.App.config.socketOptions);
 
     global.App.socket
@@ -63,10 +64,17 @@
         },
 
         main: function() {
-            this.showView(new views.MapSliderView());
-            this.showView(new views.MapView());
+            var _this = this;
+
             this.makeActive('map');
-            this.showView(new views.ValidationMessage());
+            this.showView(new views.MapView(), function() {
+                _this.showView(new views.MapTabsView());
+            });
+
+            this.showViews([
+                { view: views.MapHeaderView },
+                { view: views.MapSliderView }
+            ]);
         },
 
         objects: function() {
@@ -90,7 +98,7 @@
             this.views['ul.sub-menu'].$el.find('a[href="#'+ pageName +'"]').parent('li').addClass('active');
         },
 
-        showView: function(view){
+        showView: function(view, callback){
             if(_.has(this.views, view.container)){
                 this.views[view.container].remove();
             }
@@ -113,9 +121,23 @@
             }
 
             view.hideErrors();
-            view.render();
+            view.render(callback);
 
             this.views[view.container] = view;
+        },
+
+        showViews: function(views) {
+            var _this = this;
+
+            if(typeof views == 'object') {
+                _.each(views, function(item) {
+                    if(item.model) {
+                        _this.showView(new item.view(new item.model()));
+                    } else {
+                        _this.showView(new item.view());
+                    }
+                });
+            }
         }
     });
 
