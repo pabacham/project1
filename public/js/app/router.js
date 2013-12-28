@@ -1,57 +1,44 @@
-(function(global, $, _, Backbone) {
-    "use strict";
+// Filename: router.js
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'views/HeaderView',
+    'views/ValidationMessageView',
+    'views/SubMenuView',
+    'views/map/MapView', 'views/map/MapHeaderView', 'views/map/MapSliderView', 'views/map/MapTabsView',
+    'views/objects/ObjectSliderView',
+    'views/objects/ObjectsView',
+    'views/geozones/GeoZonesView',
+    'views/trackers/TrackersView'
+], function($, _, Backbone,
+            HeaderView, ValidationMessage,
+            SubMenuView,
+            MapView, MapHeaderView, MapSliderView, MapTabsView,
+            ObjectSliderView, ObjectsView,
+            GeoZonesView, TrackersView) {
 
-    global.App = {
+    window.App = {
         views: {},
         models: {},
         templates: {},
         socket: null,
         errorView: null,
         config: {
-            serviceUrl: global.location.origin+ "/api/",
+            serviceUrl: window.location.origin+ "/api/",
             socketOptions: {
                 reconnect: true
             }
         }
     };
 
-    var views = global.App.views,
-        models = global.App.models;
-
-
-    global.App.socket = io.connect('', global.App.config.socketOptions);
-
-    global.App.socket
-        .on('connect', function() {
-            console.log('socket connected');
-        })
-        .on('disconnect', function() {
-            console.log('socket disconnected');
-        })
-        .on('logout', function() {
-            location.href = "/";
-        })
-        .on('talk', function(data) {
-            console.debug(data.message);
-        })
-        .on('error', function(reason) {
-            if (reason == "handshake unauthorized") {
-                console.log('you are logged out');
-            } else {
-                setTimeout(function() {
-                    global.App.socket.socket.connect();
-                }, 500);
-            }
-        });
-
-
     var Router = Backbone.Router.extend({
 
         initialize: function() {
             this.views = {};
-            global.App.errorView = new views.ValidationMessage();
-            this.showView(new views.HeaderView());
-            this.showView(new views.SubMenuView());
+            window.App.errorView = new ValidationMessage();
+            this.showView(new HeaderView());
+            this.showView(new SubMenuView());
         },
 
         routes: {
@@ -67,31 +54,30 @@
             var _this = this;
 
             this.makeActive('map');
-            this.showView(new views.MapView(), function() {
-                _this.showView(new views.MapTabsView());
+            this.showView(new MapView(), function() {
+                _this.showView(new MapTabsView());
             });
-
-            this.showViews([
-                { view: views.MapHeaderView },
-                { view: views.MapSliderView }
-            ]);
+            this.showView(new MapHeaderView());
+            this.showView(new MapSliderView());
         },
 
         objects: function() {
-            this.showView(new views.ObjectSliderView());
-            this.showView(new views.ObjectsView());
             this.makeActive('objects');
-            global.App.socket.emit('test');
+
+            this.showView(new ObjectSliderView());
+            this.showView(new ObjectsView());
         },
 
         geozones: function() {
-            this.showView(new views.GeoZonesView());
             this.makeActive('geozones');
+
+            this.showView(new GeoZonesView());
         },
 
         trackers: function() {
-            this.showView(new views.TrackersView());
             this.makeActive('trackers');
+
+            this.showView(new TrackersView());
         },
 
         makeActive: function(pageName) {
@@ -141,9 +127,12 @@
         }
     });
 
-    $(function() {
-        global.app = new Router();
-        Backbone.history.start();
-    });
+    var initialize = function(){
 
-})(window, window.$, window._, window.Backbone);
+        var app = new Router;
+        Backbone.history.start();
+    };
+    return {
+        initialize: initialize
+    };
+});

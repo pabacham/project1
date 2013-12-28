@@ -1,7 +1,10 @@
-(function (window, $, _, views) {
-    "use strict";
+define([
+    'jquery',
+    'underscore',
+    'views/BaseView'
+], function($, _, BaseView){
 
-    views.MapHeaderView = views.BaseView.extend({
+    MapHeaderView = BaseView.extend({
         templateName: "mapHeaderTemplate",
         container: "#map-header",
         initialize: function () {
@@ -23,5 +26,7 @@
             return this;
         }
     });
-})(window, window.$, window._, window.App.views);
 
+    return MapHeaderView;
+
+});

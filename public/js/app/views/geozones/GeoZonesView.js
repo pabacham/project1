@@ -1,8 +1,11 @@
-(function (window, $, _, views) {
-    "use strict";
+define([
+    'jquery',
+    'underscore',
+    'views/BaseView'
+], function($, _, BaseView){
 
-    views.TrackersView = views.BaseView.extend({
-        templateName: "trackersTemplate",
+    var GeoZonesView = BaseView.extend({
+        templateName: "geoZonesTemplate",
         container: ".map-block",
         initialize: function () {
         },
@@ -13,5 +16,8 @@
             return this;
         }
     });
-})(window, window.$, window._, window.App.views);
+
+    return GeoZonesView;
+
+});
 

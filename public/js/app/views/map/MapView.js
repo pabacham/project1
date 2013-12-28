@@ -1,7 +1,11 @@
-(function (window, $, _, views) {
-    "use strict";
+define([
+    'jquery',
+    'underscore',
+    'views/BaseView',
+    'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyDsf4WcN4BV1sBD806SLf05zddqcMISZno&sensor=false'
+], function($, _, BaseView){
 
-    views.MapView = views.BaseView.extend({
+    var MapView = BaseView.extend({
         templateName: "mapTemplate",
         container: ".map-block",
         mapOptions: {
@@ -34,5 +38,7 @@
             return this;
         }
     });
-})(window, window.$, window._, window.App.views);
 
+    return MapView;
+
+});

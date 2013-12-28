@@ -1,7 +1,10 @@
-(function (window, $, _, views) {
-    "use strict";
+define([
+    'jquery',
+    'underscore',
+    'views/BaseView'
+], function($, _, BaseView){
 
-    views.MapSliderView = views.BaseView.extend({
+    MapSliderView = BaseView.extend({
         templateName: "mapSliderTemplate",
         container: "#slider-block",
         initialize: function () {
@@ -22,5 +25,8 @@
             return this;
         }
     });
-})(window, window.$, window._, window.App.views);
+
+    return MapSliderView;
+
+});
 

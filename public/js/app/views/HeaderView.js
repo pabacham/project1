@@ -1,7 +1,11 @@
-(function (window, $, _, views) {
-    "use strict";
+define([
+    'jquery',
+    'underscore',
+    'views/BaseView'
+], function($, _, BaseView){
 
-    views.HeaderView = views.BaseView.extend({
+    "use strict";
+    var HeaderView = BaseView.extend({
         templateName: "headerTemplate",
         container: "header.header",
         initialize: function () {
@@ -19,5 +23,10 @@
             return this;
         }
     });
-})(window, window.$, window._, window.App.views);
+
+    return HeaderView;
+
+});
+
+
 

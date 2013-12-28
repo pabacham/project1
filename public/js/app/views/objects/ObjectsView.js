@@ -1,7 +1,10 @@
-(function (window, $, _, views) {
-    "use strict";
+define([
+    'jquery',
+    'underscore',
+    'views/BaseView'
+], function($, _, BaseView){
 
-    views.ObjectsView = views.BaseView.extend({
+    var ObjectsView = BaseView.extend({
         templateName: "objectsTemplate",
         container: ".map-block",
         initialize: function () {
@@ -24,5 +27,7 @@
             return this;
         }
     });
-})(window, window.$, window._, window.App.views);
 
+    return ObjectsView;
+
+});
