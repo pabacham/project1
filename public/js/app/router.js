@@ -18,25 +18,10 @@ define([
             ObjectSliderView, ObjectsView,
             GeoZonesView, TrackersView) {
 
-    window.App = {
-        views: {},
-        models: {},
-        templates: {},
-        socket: null,
-        errorView: null,
-        config: {
-            serviceUrl: window.location.origin+ "/api/",
-            socketOptions: {
-                reconnect: true
-            }
-        }
-    };
-
     var Router = Backbone.Router.extend({
 
         initialize: function() {
             this.views = {};
-            window.App.errorView = new ValidationMessage();
             this.showView(new HeaderView());
             this.showView(new SubMenuView());
         },
@@ -101,12 +86,12 @@ define([
                 view.model &&
                 view.model.bind('validated', function(isValid, model, errors) {
                     if(!isValid) {
-                        view.showErrors(errors);
+                        ValidationMessage.showErrors(errors, view);
                     }
                 });
             }
 
-            view.hideErrors();
+            ValidationMessage.hideErrors();
             view.render(callback);
 
             this.views[view.container] = view;

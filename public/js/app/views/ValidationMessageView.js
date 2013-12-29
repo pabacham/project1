@@ -19,7 +19,29 @@ define([
 
         },
 
+        showErrors: function(errors, view) {
+            var _this = this;
+            this.errorMessages = {}
+
+            _.each(errors, function(value, key) {
+                if(typeof value == 'object') {
+                    _this.errorMessages[key] = value.message;
+                } else {
+                    _this.errorMessages[key] = value;
+                }
+                view.$el.find('input[name="'+ key +'"]').addClass('error');
+            });
+
+            this.showContainer();
+        },
+
+        hideErrors: function() {
+            this.errorView &&
+            this.errorView.closeContainer();
+        },
+
         showContainer: function () {
+
             if(Object.keys(this.errorMessages).length) {
                 this.$el.html(_.template(this.getTemplate(), { errors: this.errorMessages }));
                 $(this.container).html(this.$el).addClass('open');
@@ -41,6 +63,6 @@ define([
         }
     });
 
-    return ValidationMessageView;
+    return new ValidationMessageView();
 
 });
