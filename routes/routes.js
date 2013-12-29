@@ -1,8 +1,9 @@
-var checkAuth = require('middleware/checkAuth');
+var checkAuth = require('middleware/checkAuth'),
+    isSignedIn = require('middleware/isSignedIn');
 
 module.exports = function(app) {
 
-    app.get('/', function(req, res) {
+    app.get('/', isSignedIn, function(req, res) {
         res.render('auth/index', {});
     });
 
