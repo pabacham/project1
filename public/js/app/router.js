@@ -7,8 +7,7 @@ define([
     'views/ValidationMessageView',
     'views/SubMenuView',
     'views/map/MapView', 'views/map/MapHeaderView', 'views/map/MapSliderView', 'views/map/MapTabsView',
-    'views/objects/ObjectSliderView',
-    'views/objects/ObjectsView',
+    'views/objects/ObjectSliderView', 'views/objects/ObjectsView',
     'views/geozones/GeoZonesView',
     'views/trackers/TrackersView'
 ], function($, _, Backbone,
@@ -32,7 +31,6 @@ define([
             "objects": "objects",
             "geozones": "geozones",
             "trackers": "trackers"
-
         },
 
         main: function() {
@@ -117,6 +115,7 @@ define([
         var app = new Router;
         Backbone.history.start();
     };
+
     return {
         initialize: initialize
     };
