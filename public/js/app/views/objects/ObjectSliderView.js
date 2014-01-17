@@ -7,60 +7,68 @@ define([
     var ObjectSliderView = BaseView.extend({
         templateName: "objectSliderTemplate",
         container: "#slider-block",
+        canvas: {
+            el: null,
+            currentColor: null,
+            context: null,
+            image: null
+        },
+
         initialize: function () {
         },
 
         events: {
-            'click .slider-close' : "closeSlider",
-            'click #picker' : "addColor",
-            'click .preview' : "openPicker"
+            'click .slider-close' : 'closeSlider',
+            'click #picker' : 'addColor',
+            'mousemove #picker' : 'onMouseMove',
+            'click .preview' : 'openPicker'
         },
 
-        addColor: function() {
-            var currentColor = this.$el.find('#hexVal').val();
-            $('.preview').css('background', currentColor);
-            this.$el.find('.colorpicker').toggleClass('open');
+        addColor: function(e) {
+            e.stopPropagation();
+
+            this.canvas.currentColor = this.$el.find('#hexVal').val();
+            this.$el.find('.preview').css('background', this.canvas.currentColor);
+            this.closePicker();
         },
 
-        openPicker: function() {
-            this.$el.find('.colorpicker').toggleClass('open');
-        },
+        openPicker: function(e) {
+            var _this = this;
 
+            this.$el.find('.colorpicker').addClass('open');
+            e.stopPropagation();
 
-        canvasCreate: function(){
-
-            var canvas = document.getElementById('picker');
-            var ctx = canvas.getContext('2d');
-
-            // drawing active image
-            var image = new Image();
-            image.onload = function () {
-                ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
-            }
-
-            // select desired colorwheel
-            var imageSrc = '../../img/colorwheel1.png';
-            image.src = imageSrc;
-
-            $('#picker').mousemove(function(e) { // mouse move handler
-                if (true){
-                    // get coordinates of current position
-                    var canvasOffset = $(canvas).offset();
-                    var canvasX = Math.floor(e.pageX - canvasOffset.left);
-                    var canvasY = Math.floor(e.pageY - canvasOffset.top);
-
-                    // get current pixel
-                    var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
-                    var pixel = imageData.data;
-
-                    // update preview color
-                    var pixelColor = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
-                    $('.preview').css('background', pixelColor);
-
-                    var dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
-                    $('#hexVal').val('#' + ('0000' + dColor.toString(16)).substr(-6));
-                }
+            $(document).on('click', document, function() {
+                _this.closePicker();
             });
+        },
+
+        closePicker: function() {
+            this.$el.find('.colorpicker').removeClass('open');
+            $(document).off();
+        },
+
+        onMouseMove: function(e) {
+
+            var pixel = this.canvas.context.getImageData(e.offsetX, e.offsetY, 1, 1).data,
+                dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0],
+                hexValue = '#' + ('0000' + dColor.toString(16)).substr(-6);
+
+            this.$el.find('.preview').css('background', "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")");
+            this.$el.find('#hexVal').val(hexValue);
+        },
+
+        canvasInit: function(){
+            var _this = this;
+
+            this.canvas.el = this.$el.find('#picker').get(0);
+            this.canvas.context = this.canvas.el.getContext('2d');
+            this.canvas.image = new Image();
+            this.canvas.image.src = '../../img/colorwheel1.png';
+
+            this.canvas.image.onload = function() {
+                _this.canvas.context.drawImage(_this.canvas.image, 0, 0, _this.canvas.image.width, _this.canvas.image.height);
+            };
         },
 
         closeSlider: function() {
@@ -70,7 +78,8 @@ define([
         render: function () {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
-            this.canvasCreate();
+            this.canvasInit();
+
             return this;
         }
     });
