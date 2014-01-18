@@ -2,6 +2,7 @@ define([
     'jquery',
     'underscore',
     'views/BaseView',
+    'jcrop',
     'jquery-select2'
 ], function($, _, BaseView){
 
@@ -16,7 +17,7 @@ define([
         },
 
         initialize: function () {
-            this.popup = $('#popup')
+            this.popup = $('#popup');
         },
 
         events: {
@@ -24,11 +25,49 @@ define([
             'click #picker' : 'addColor',
             'mousemove #picker' : 'onMouseMove',
             'click .preview' : 'openPicker',
-            'click .wrap-photo-btn button' : "openPopup"
+            'change #photo-upload' : 'onPhotoChange'
         },
 
-        openPopup: function(){
-            this.popup.toggleClass()
+        openImageCropPopup: function(){
+            this.popup.addClass('open');
+        },
+
+        closeImageCropPopup: function(){
+            this.popup.removeClass('open');
+        },
+
+        onPhotoChange: function(e) {
+            var fileInput = this.$el.find(e.currentTarget),
+                oFReader = new FileReader(),
+                cropImage = this.popup.find('#crop-image'),
+                _this = this;
+
+            this.$el.find('#fileName').val(fileInput.val());
+            oFReader.readAsDataURL(fileInput.get(0).files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                cropImage.attr('src', oFREvent.target.result);
+
+                cropImage.Jcrop({
+                    onChange : updatePreview,
+                    onSelect : updatePreview,
+                    aspectRatio : 1,
+                    boxWidth: 540,
+                    setSelect: [ 150, 150, 150, 150 ]
+                });
+
+                _this.openImageCropPopup();
+            };
+
+            function updatePreview(c) {
+                if(parseInt(c.w) > 0) {
+                    var imageObj = _this.popup.find('#crop-image').get(0),
+                        canvas = _this.popup.find('#crop-preview').get(0),
+                        context = canvas.getContext("2d");
+
+                    context.drawImage(imageObj, c.x, c.y, c.w, c.h, 0, 0, canvas.width, canvas.height);
+                }
+            };
         },
 
         addColor: function(e) {

@@ -69,7 +69,7 @@ script#objectSliderTemplate(type='text/template')
                 .wrap-photo-btn
                     label
                         input#fileName(type="text", value="Выбрать фотографию")
-                        input(type="file", onchange='document.getElementById("fileName").value=this.value')
+                        input#photo-upload(type="file")
                     button Удалить фотографию
         .btn-box
             a.btn01(href='#', data-value="Добавить")
@@ -81,9 +81,9 @@ script#imageCropTemplate(type='text/template')
         h2 Редактирование фотографии
         .wrap-block-crop.clear-fix
             .block-crop(data-value="Выберите необходимую область фотографии")
-                img(src='img/pict/crop.png' alt="")
+                img#crop-image(src='' alt="")
             .block-prev(data-value="Предварительный просмотр")
                 .wrap-img-prev
-                    img(src="img/pict/photo.png" alt='')
+                    canvas#crop-preview
         a.btn01(href='#', data-value="Сохранить")
         a.btn02(href='#', data-value="Отменить")

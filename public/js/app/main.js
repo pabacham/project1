@@ -8,6 +8,7 @@ requirejs.config({
         async: 'libs/require/async',
         jquery: 'libs/jquery/jquery',
         'jquery-select2': 'libs/others/select2.min',
+        'jcrop': 'libs/others/jquery.Jcrop.min',
         underscore: 'libs/underscore/underscore',
         backbone: 'libs/backbone/backbone',
         socketio: '../../socket.io/socket.io'
@@ -16,6 +17,10 @@ requirejs.config({
         'jquery-select2': {
             deps: ['jquery'],
             exports: 'select2'
+        },
+        'jcrop': {
+            deps: ['jquery'],
+            exports: 'jcrop'
         },
         'socketio': {
             exports: 'io'

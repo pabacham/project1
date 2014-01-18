@@ -1,5 +1,7 @@
 /*** Reset CSS Load ***/
 @import "reset.css";
+@import "jcrop.css";
+
 /*default styles*/
 ol,ul {list-style: none;}
 a {outline: 0;outline: none;text-decoration: underline; color: #2a2a2a; cursor: pointer;}
@@ -348,3 +350,4 @@ ul#object-detail li.selected a:after { -moz-opacity: 1; -khtml-opacity: 1; opaci
 .select2-container-active .select2-choice, .select2-container-active .select2-choices {box-shadow: none;}
 @media (min-width:768px) and (max-width:979px) {section {width: 240px;} .form-row input {width: 206px;}}
 @media (min-width:980px) and (max-width:1198px) {section {width: 240px;}}
+
