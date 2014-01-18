@@ -1,7 +1,8 @@
 define([
     'jquery',
     'underscore',
-    'views/BaseView'
+    'views/BaseView',
+    'jquery-select2'
 ], function($, _, BaseView){
 
     var ObjectSliderView = BaseView.extend({

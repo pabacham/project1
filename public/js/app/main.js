@@ -7,11 +7,16 @@ requirejs.config({
     paths: {
         async: 'libs/require/async',
         jquery: 'libs/jquery/jquery',
+        'jquery-select2': 'libs/others/select2.min',
         underscore: 'libs/underscore/underscore',
         backbone: 'libs/backbone/backbone',
         socketio: '../../socket.io/socket.io'
     },
     shim: {
+        'jquery-select2': {
+            deps: ['jquery'],
+            exports: 'select2'
+        },
         'socketio': {
             exports: 'io'
         },

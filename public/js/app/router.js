@@ -8,14 +8,13 @@ define([
     'views/SubMenuView',
     'views/map/MapView', 'views/map/MapHeaderView', 'views/map/MapSliderView', 'views/map/MapTabsView',
     'views/objects/ObjectSliderView', 'views/objects/ObjectsView',
-    'views/geozones/GeoZonesView',
-    'views/trackers/TrackersView'
+    'views/geozones/GeoZonesView'
 ], function($, _, Backbone,
             HeaderView, ValidationMessage,
             SubMenuView,
             MapView, MapHeaderView, MapSliderView, MapTabsView,
             ObjectSliderView, ObjectsView,
-            GeoZonesView, TrackersView) {
+            GeoZonesView) {
 
     var Router = Backbone.Router.extend({
 
@@ -29,8 +28,7 @@ define([
             "": "main",
             "map": "main",
             "objects": "objects",
-            "geozones": "geozones",
-            "trackers": "trackers"
+            "geozones": "geozones"
         },
 
         main: function() {
@@ -55,12 +53,6 @@ define([
             this.makeActive('geozones');
 
             this.showView(new GeoZonesView());
-        },
-
-        trackers: function() {
-            this.makeActive('trackers');
-
-            this.showView(new TrackersView());
         },
 
         makeActive: function(pageName) {
