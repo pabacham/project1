@@ -4,20 +4,18 @@ define([
     'views/BaseView'
 ], function($, _, BaseView){
 
-    var ObjectsView = BaseView.extend({
-        templateName: "objectsTemplate",
-        container: ".map-block",
+    MapHeaderView = BaseView.extend({
+        templateName: "geoZonesHeaderTemplate",
+        container: "#geo-header",
         initialize: function () {
-            this.slider = $('#add-object');
+            this.slider = $('#add-geo-zone');
         },
 
         events: {
-            'click #add-new-object' : 'openSlider',
-            'click .add-new-object' : 'openSlider'
+            'click #geo_slider_open': 'openSlider'
         },
 
-        openSlider: function(){
-            console.log(this.slider)
+        openSlider: function() {
             this.slider.toggleClass('open');
         },
 
@@ -29,6 +27,6 @@ define([
         }
     });
 
-    return ObjectsView;
+    return MapHeaderView;
 
 });

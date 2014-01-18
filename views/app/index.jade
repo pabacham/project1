@@ -3,6 +3,7 @@ extends layout
 block content
     include templates/mapTemplates
     include templates/objectTemplates
+    include templates/geoZoneTemplates
     script#headerTemplate(type='text/template')
         div.wrap_btn
             a.user-exit(href='#', id='user-logout', onclick='$("<form method=POST action=/logout>").appendTo("body").submit();return false')
@@ -31,9 +32,6 @@ block content
         li.three
             a.menu-geozone(href='#geozones') Геозоны
 
-
-    script#geoZonesTemplate(type='text/template')
-        div.geo-zones-block Geo-Zones
 
     script#validationMessage(type='text/template')
         ul.wrap-list

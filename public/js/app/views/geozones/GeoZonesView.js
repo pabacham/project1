@@ -8,7 +8,14 @@ define([
         templateName: "geoZonesTemplate",
         container: ".map-block",
         initialize: function () {
+            this.slider = $('.slider-body');
         },
+
+        events: {
+            'click #add-new-object' : 'openSlider',
+            'click .add-new-object' : 'openSlider'
+        },
+
         render: function () {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);

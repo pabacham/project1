@@ -6,7 +6,7 @@ define([
 ], function($, _, BaseView){
 
     var ObjectSliderView = BaseView.extend({
-        templateName: "objectSliderTemplate",
+        templateName: "geoZonesSliderTemplate",
         container: "#slider-block",
         canvas: {
             el: null,
@@ -28,7 +28,7 @@ define([
         },
 
         openPopup: function(){
-            this.popup.toggleClass()
+            this.popup.toggleClass('open')
         },
 
         addColor: function(e) {

@@ -1,7 +1,8 @@
 define([
     'jquery',
     'underscore',
-    'views/BaseView'
+    'views/BaseView',
+    'jquery-select2'
 ], function($, _, BaseView){
 
     MapSliderView = BaseView.extend({
@@ -18,10 +19,14 @@ define([
             this.$el.find('.slider-body').toggleClass('open');
         },
 
+        select2Init: function() {
+            this.$el.find('.select').select2();
+        },
+
         render: function () {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
-
+            this.select2Init();
             return this;
         }
     });

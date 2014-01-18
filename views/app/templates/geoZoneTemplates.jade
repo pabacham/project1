@@ -1,0 +1,64 @@
+script#geoZonesTemplate(type='text/template')
+    div#geo-header.geo-header
+    .place-map
+
+script#geoZonesHeaderTemplate(type='text/template')
+    .geo-on-map
+        span.user-geo
+            a.close-user
+            | 1
+        span.user-geo.one
+            a.close-user
+            | 2
+        span.user-geo.two
+            a.close-user
+            | 3
+        span.auto
+        span#geo_slider_open +
+    span.title-geo-header Геозоны на карте:
+
+script#geoZonesSliderTemplate(type='text/template')
+    #add-geo-zone.slider-body.slider-geo
+        h2 Добавление новой геозоны
+        p
+            | Для добавления  опорной точки геозоны сделайте двойной клик на карте. Для дальнейшего редактирования кликните на геозону.
+        .form-row.clear-fix
+            .form-cell
+                label Цвет геозоны
+                .picker-wrap.clear-fix
+                    input#hexVal.txt(type='text', placeholder='Выберите цвет')
+                    .preview
+                    .colorpicker
+                        canvas#picker(var="1" width="281" height="278")
+        .form-row.clear-fix
+            .form-cell
+                label Объекты
+            ul.object-geo-zone
+                li
+                    | Муж
+                    a.dellete
+                li
+                    | Жена
+                    a.dellete
+                li
+                    | Автомобиль
+                    a.dellete
+                li
+                    | Автомобиль мужа
+                    a.dellete
+        .form-row.clear-fix
+            .form-cell
+                select.select
+                    option
+                        | Автомобиль
+                    option
+                        | Муж
+                    option
+                        | Жена
+            .form-cell.btn-object
+                a.btn01( data-value="Добавить объект")
+        .btn-box
+            a.btn01(href='#', data-value="Добавить")
+            a.btn02(href='#', data-value="Отменить")
+        .slider-close
+
