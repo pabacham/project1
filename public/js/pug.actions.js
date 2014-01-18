@@ -12,3 +12,4 @@ $(document).ready(function() {
             $(idContent).show();
             return false;
         });
+});

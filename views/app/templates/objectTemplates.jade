@@ -68,8 +68,8 @@ script#objectSliderTemplate(type='text/template')
                 .wrap-photo
                 .wrap-photo-btn
                     label
-                        input(type="file", onchange='document.getElementById("fileName").value=this.value')
                         input#fileName(type="text", value="Выбрать фотографию")
+                        input(type="file", onchange='document.getElementById("fileName").value=this.value')
                     button Удалить фотографию
         .btn-box
             a.btn01(href='#', data-value="Добавить")
