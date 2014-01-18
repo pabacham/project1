@@ -75,3 +75,15 @@ script#objectSliderTemplate(type='text/template')
             a.btn01(href='#', data-value="Добавить")
             a.btn02(href='#', data-value="Отменить")
         .slider-close
+script#imageCropTemplate(type='text/template')
+    .wrap-crop.clear-fix
+        a.close
+        h2 Редактирование фотографии
+        .wrap-block-crop.clear-fix
+            .block-crop(data-value="Выберите необходимую область фотографии")
+                img(src='img/pict/crop.png' alt="")
+            .block-prev(data-value="Предварительный просмотр")
+                .wrap-img-prev
+                    img(src="img/pict/photo.png" alt='')
+        a.btn01(href='#', data-value="Сохранить")
+        a.btn02(href='#', data-value="Отменить")

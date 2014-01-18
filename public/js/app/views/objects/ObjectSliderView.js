@@ -16,13 +16,19 @@ define([
         },
 
         initialize: function () {
+            this.popup = $('#popup')
         },
 
         events: {
             'click .slider-close' : 'closeSlider',
             'click #picker' : 'addColor',
             'mousemove #picker' : 'onMouseMove',
-            'click .preview' : 'openPicker'
+            'click .preview' : 'openPicker',
+            'click .wrap-photo-btn button' : "openPopup"
+        },
+
+        openPopup: function(){
+            this.popup.toggleClass('open')
         },
 
         addColor: function(e) {
