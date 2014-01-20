@@ -2,9 +2,9 @@ define([
     'jquery',
     'underscore',
     'views/BaseView',
-    'jcrop',
+    'views/objects/ImageCropView',
     'jquery-select2'
-], function($, _, BaseView){
+], function($, _, BaseView, ImageCropView){
 
     var ObjectSliderView = BaseView.extend({
         templateName: "objectSliderTemplate",
@@ -17,7 +17,7 @@ define([
         },
 
         initialize: function () {
-            this.popup = $('#popup');
+
         },
 
         events: {
@@ -28,46 +28,11 @@ define([
             'change #photo-upload' : 'onPhotoChange'
         },
 
-        openImageCropPopup: function(){
-            this.popup.addClass('open');
-        },
-
-        closeImageCropPopup: function(){
-            this.popup.removeClass('open');
-        },
-
         onPhotoChange: function(e) {
-            var fileInput = this.$el.find(e.currentTarget),
-                oFReader = new FileReader(),
-                cropImage = this.popup.find('#crop-image'),
-                _this = this;
-
+            var fileInput = this.$el.find(e.currentTarget);
             this.$el.find('#fileName').val(fileInput.val());
-            oFReader.readAsDataURL(fileInput.get(0).files[0]);
 
-            oFReader.onload = function (oFREvent) {
-                cropImage.attr('src', oFREvent.target.result);
-
-                cropImage.Jcrop({
-                    onChange : updatePreview,
-                    onSelect : updatePreview,
-                    aspectRatio : 1,
-                    boxWidth: 540,
-                    setSelect: [ 150, 150, 150, 150 ]
-                });
-
-                _this.openImageCropPopup();
-            };
-
-            function updatePreview(c) {
-                if(parseInt(c.w) > 0) {
-                    var imageObj = _this.popup.find('#crop-image').get(0),
-                        canvas = _this.popup.find('#crop-preview').get(0),
-                        context = canvas.getContext("2d");
-
-                    context.drawImage(imageObj, c.x, c.y, c.w, c.h, 0, 0, canvas.width, canvas.height);
-                }
-            };
+            this.imageCropView.init(fileInput);
         },
 
         addColor: function(e) {
@@ -118,16 +83,18 @@ define([
         },
 
         closeSlider: function() {
-            this.$el.find('.slider-body').toggleClass('open');
+            this.$el.find('#add-object').removeClass('open');
         },
 
         select2Init: function() {
             this.$el.find('.select').select2();
         },
 
-        render: function () {
+        render: function (router) {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
+            this.imageCropView = router.showView(new ImageCropView());
+
             this.canvasInit();
             this.select2Init();
             return this;

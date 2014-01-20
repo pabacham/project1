@@ -30,7 +30,7 @@ define([
 
         },
 
-        render: function (callback) {
+        render: function (router, callback) {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
             this.googleMapInitialize(callback);
