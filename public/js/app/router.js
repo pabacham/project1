@@ -6,14 +6,14 @@ define([
     'views/HeaderView',
     'views/ValidationMessageView',
     'views/SubMenuView',
-    'views/map/MapView', 'views/map/MapHeaderView', 'views/map/MapSliderView', 'views/map/MapTabsView',
+    'views/map/MapView', 'views/map/MapHeaderView', 'views/map/MapSliderView',
     'views/objects/ObjectsView',
     'views/geozones/GeoZonesView', 'views/geozones/GeoZonesHeaderView', 'views/geozones/GeoZonesSliderView'
 
 ], function($, _, Backbone,
             HeaderView, ValidationMessage,
             SubMenuView,
-            MapView, MapHeaderView, MapSliderView, MapTabsView,
+            MapView, MapHeaderView, MapSliderView,
             ObjectsView,
             GeoZonesView, GeoZonesHeaderView, GeoZonesSliderView
             ) {
@@ -34,20 +34,15 @@ define([
         },
 
         main: function() {
-            var _this = this;
-
             this.makeActive('map');
             this.showView(new MapSliderView());
-            this.showView(new MapView(), function() {
-                _this.showView(new MapTabsView());
-            });
+            this.showView(new MapView());
             this.showView(new MapHeaderView());
 
         },
 
         objects: function() {
             this.makeActive('objects');
-
             this.showView(new ObjectsView());
         },
 
@@ -86,7 +81,8 @@ define([
             }
 
             ValidationMessage.hideErrors();
-            view.render(this, callback);
+            view.render(this);
+            callback && callback();
 
             this.views[view.container] = view;
 

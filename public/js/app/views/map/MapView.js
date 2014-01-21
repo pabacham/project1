@@ -2,25 +2,15 @@ define([
     'jquery',
     'underscore',
     'views/BaseView',
+    'views/map/MapTabsView',
     'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyDsf4WcN4BV1sBD806SLf05zddqcMISZno&sensor=false'
-], function($, _, BaseView){
+], function($, _, BaseView, MapTabsView){
 
     var MapView = BaseView.extend({
         templateName: "mapTemplate",
         container: ".map-block",
-        mapOptions: {
-            center: new google.maps.LatLng(-34.397, 150.644),
-            zoom: 8
-        },
-
-        googleMapInitialize: function(callback) {
-            var mapCanvas = this.$el.find('#map-canvas');
-
-            this.map = new google.maps.Map(mapCanvas.get(0), this.mapOptions);
-            google.maps.event.addListenerOnce(this.map, 'tilesloaded', function(){
-                callback && callback();
-            });
-        },
+        router: null,
+        mapTabsView: null,
 
         initialize: function () {
 
@@ -30,10 +20,26 @@ define([
 
         },
 
-        render: function (router, callback) {
+        mapOptions: {
+            center: new google.maps.LatLng(-34.397, 150.644),
+            zoom: 8
+        },
+
+        googleMapInitialize: function() {
+            var mapCanvas = this.$el.find('#map-canvas'),
+                _this = this;
+
+            this.map = new google.maps.Map(mapCanvas.get(0), this.mapOptions);
+            google.maps.event.addListenerOnce(this.map, 'tilesloaded', function(){
+               this.mapTabsView =  _this.router.showView(new MapTabsView());
+            });
+        },
+
+        render: function (router) {
+            this.router = router;
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
-            this.googleMapInitialize(callback);
+            this.googleMapInitialize();
 
             return this;
         }

@@ -15,6 +15,7 @@ define([
             context: null,
             image: null
         },
+        imageCropView: null,
 
         initialize: function () {
 
@@ -28,9 +29,16 @@ define([
             'change #photo-upload' : 'onPhotoChange'
         },
 
+        bindEvents: function() {
+            var _this = this;
+
+            this.listenTo(this.imageCropView, 'popupIsClosed', function() {
+                _this.$el.find('#photo-upload').val('');
+            });
+        },
+
         onPhotoChange: function(e) {
             var fileInput = this.$el.find(e.currentTarget);
-            this.$el.find('#fileName').val(fileInput.val());
 
             this.imageCropView.init(fileInput);
         },
@@ -94,6 +102,8 @@ define([
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
             this.imageCropView = router.showView(new ImageCropView());
+
+            this.bindEvents();
 
             this.canvasInit();
             this.select2Init();

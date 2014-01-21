@@ -9,7 +9,7 @@ define([
         templateName: "imageCropTemplate",
         container: "#popup",
         initialize: function () {
-
+            //this.bind('popupIsClosed', this.closePopup);
         },
 
         events: {
@@ -22,9 +22,14 @@ define([
         },
 
         closePopup: function(e){
+            var cropImage = this.$el.find('#crop-image'),
+                jcropApi = cropImage.data('Jcrop');
+
             e.preventDefault();
 
             this.$el.parent('#popup').removeClass('open');
+            jcropApi.destroy();
+            this.trigger('popupIsClosed');
         },
 
         init: function(fileInput) {
@@ -45,7 +50,12 @@ define([
                     aspectRatio : 1,
                     boxWidth: 540,
                     setSelect: [ 150, 150, 150, 150 ]
+                }, function() {
+                    this.animateTo([ 0,0,500,500]);
+
+                    return false;
                 });
+
 
                 _this.openPopup();
             };

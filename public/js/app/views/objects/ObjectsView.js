@@ -8,6 +8,9 @@ define([
     var ObjectsView = BaseView.extend({
         templateName: "objectsTemplate",
         container: ".map-block",
+        router: null,
+        formSlider: null,
+
         initialize: function () {
 
         },
@@ -18,13 +21,18 @@ define([
         },
 
         openFormSlider: function(){
-            this.formSlider.$el.find('#add-object').addClass('open');
+            if(this.formSlider) {
+                this.formSlider.$el.find('#add-object').addClass('open');
+            } else {
+                this.formSlider = this.router.showView(new ObjectSliderView());
+                this.formSlider.$el.find('#add-object').addClass('open');
+            }
         },
 
         render: function (router) {
+            this.router = router;
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
-            this.formSlider = router.showView(new ObjectSliderView());
 
             return this;
         }
