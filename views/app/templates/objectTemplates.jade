@@ -26,16 +26,16 @@ script#objectSliderTemplate(type='text/template')
         .form-row.clear-fix
             label Тип Пага
             .form-row.radio-wrap
-                input#mobile-pug.radio(type='radio', name='pug')
+                input#mobile-pug.radio(type='radio', name='pug' checked)
                 label.radio-label(for="mobile-pug")
                     | Мобильное приложение
-                input#tracker-pug.radio(type='radio', name='pug' checked)
+                input#tracker-pug.radio(type='radio', name='pug')
                 label.radio-label(for="tracker-pug")
                     | Трекер
         .form-row.clear-fix
             .form-cell
-                label Трекер
-                select.select
+                label Приложение
+                select.select(name="application")
                     option
                         | Huawei 0223422
                     option
@@ -44,7 +44,7 @@ script#objectSliderTemplate(type='text/template')
                         | Huawei 0223422
             .form-cell
                 label Тип оъекта
-                select.select
+                select.select(name="object-type")
                     option
                         | Машина
                     option
@@ -54,23 +54,23 @@ script#objectSliderTemplate(type='text/template')
         .form-row.clear-fix
             .form-cell
                 label Имя объекта
-                input.txt(type='text', placeholder='Муж')
+                input.txt(type='text', placeholder='Имя', name="object-name")
             .form-cell
                 label Цвет объета
                 .picker-wrap.clear-fix
-                    input#hexVal.txt(type='text', placeholder='Выберите цвет')
+                    input#hexVal.txt(type='text', placeholder='Выберите цвет', name="color")
                     .preview
                     .colorpicker
-                        canvas#picker(var="1" width="281" height="278")
         .add-photo
             .form-row.clear-fix
                 label Фотография объекта
                 .wrap-photo
+                    canvas#object-photo
                 .wrap-photo-btn
                     label
                         input#fileName(type="text", value="Выбрать фотографию")
                         input#photo-upload(type="file")
-                    button Удалить фотографию
+                    button#remove-photo-btn(style="display: none;") Удалить фотографию
         .btn-box
             a.btn01(href='#', data-value="Добавить")
             a.btn02(href='#', data-value="Отменить")
@@ -87,3 +87,6 @@ script#imageCropTemplate(type='text/template')
                     canvas#crop-preview
         a.btn01(href='#', data-value="Сохранить")
         a.btn02(href='#', data-value="Отменить")
+
+script#colorPickerTemplate(type='text/template')
+    canvas#picker(width="281" height="278")

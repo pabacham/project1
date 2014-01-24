@@ -8,28 +8,15 @@ define([
     var ImageCropView = BaseView.extend({
         templateName: "imageCropTemplate",
         container: "#popup",
+        croppedImage: null,
         initialize: function () {
-            //this.bind('popupIsClosed', this.closePopup);
+
         },
 
         events: {
             'click .close' : 'closePopup',
-            'click .btn02': 'closePopup'
-        },
-
-        openPopup: function(){
-            this.$el.parent('#popup').addClass('open');
-        },
-
-        closePopup: function(e){
-            var cropImage = this.$el.find('#crop-image'),
-                jcropApi = cropImage.data('Jcrop');
-
-            e.preventDefault();
-
-            this.$el.parent('#popup').removeClass('open');
-            jcropApi.destroy();
-            this.trigger('popupIsClosed');
+            'click .btn02': 'closePopup',
+            'click .btn01': 'finishCropping'
         },
 
         init: function(fileInput) {
@@ -39,6 +26,7 @@ define([
                 canvas = this.$el.find('#crop-preview').get(0),
                 context = canvas.getContext("2d"),
                 _this = this;
+            this.croppedImage = canvas;
 
             oFReader.readAsDataURL(fileInput.get(0).files[0]);
             oFReader.onload = function (oFREvent) {
@@ -65,6 +53,28 @@ define([
                     context.drawImage(imageObj, c.x, c.y, c.w, c.h, 0, 0, canvas.width, canvas.height);
                 }
             };
+        },
+
+        openPopup: function(){
+            this.$el.parent('#popup').addClass('open');
+        },
+
+        closePopup: function(e){
+            e && e.preventDefault();
+
+            var cropImage = this.$el.find('#crop-image'),
+                jcropApi = cropImage.data('Jcrop');
+
+            this.$el.parent('#popup').removeClass('open');
+            jcropApi.destroy();
+            this.trigger('popupIsClosed');
+        },
+
+        finishCropping: function(e) {
+            e && e.preventDefault();
+
+            this.trigger('croppingFinished', this.croppedImage);
+            this.closePopup();
         },
 
         render: function () {

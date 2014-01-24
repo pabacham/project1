@@ -3,18 +3,14 @@ define([
     'underscore',
     'views/BaseView',
     'views/objects/ImageCropView',
+    'plugins/ColorPicker',
     'jquery-select2'
-], function($, _, BaseView, ImageCropView){
+], function($, _, BaseView, ImageCropView, ColorPicker){
 
     var ObjectSliderView = BaseView.extend({
         templateName: "objectSliderTemplate",
         container: "#slider-block",
-        canvas: {
-            el: null,
-            currentColor: null,
-            context: null,
-            image: null
-        },
+        colorPicker: null,
         imageCropView: null,
 
         initialize: function () {
@@ -23,74 +19,69 @@ define([
 
         events: {
             'click .slider-close' : 'closeSlider',
-            'click #picker' : 'addColor',
-            'mousemove #picker' : 'onMouseMove',
-            'click .preview' : 'openPicker',
-            'change #photo-upload' : 'onPhotoChange'
+            'click .btn02' : 'closeSlider',
+            'click .btn01' : 'saveObject',
+            'click .preview' : 'openColorPicker',
+            'change #photo-upload' : 'onPhotoChange',
+            'click #remove-photo-btn' : 'removePhoto'
         },
 
         bindEvents: function() {
-            var _this = this;
 
             this.listenTo(this.imageCropView, 'popupIsClosed', function() {
-                _this.$el.find('#photo-upload').val('');
+                this.$el.find('#photo-upload').val('');
+            });
+
+            this.listenTo(this.imageCropView, 'croppingFinished', function(canvas) {
+                if(canvas) {
+                    var ctx = this.$el.find('#object-photo').get(0).getContext("2d");
+                    ctx.drawImage(canvas, 0, 0);
+                    this.$el.find('#remove-photo-btn').show();
+                }
+            });
+
+            this.listenTo(this.colorPicker, 'mouseMoved', function(pixel, hexValue) {
+                this.$el.find('.preview').css('background', "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")");
+                this.$el.find('#hexVal').val(hexValue);
+            });
+
+            this.listenTo(this.colorPicker, 'mouseOut', function(color) {
+                if(color) {
+                    this.$el.find('.preview').css('background', color);
+                    this.$el.find('#hexVal').val(color);
+                } else {
+                    this.$el.find('.preview').removeAttr('style');
+                    this.$el.find('#hexVal').val('');
+                }
+            });
+
+            this.listenTo(this.colorPicker, 'addColor', function(color) {
+                this.$el.find('.preview').css('background', color);
+                this.$el.find('.preview').css('background', color);
+                this.colorPicker.closePicker();
             });
         },
 
         onPhotoChange: function(e) {
             var fileInput = this.$el.find(e.currentTarget);
-
             this.imageCropView.init(fileInput);
         },
 
-        addColor: function(e) {
-            e.stopPropagation();
-
-            this.canvas.currentColor = this.$el.find('#hexVal').val();
-            this.$el.find('.preview').css('background', this.canvas.currentColor);
-            this.closePicker();
+        removePhoto: function(e) {
+            var canvas = this.$el.find('#object-photo').get(0);
+                ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            this.$el.find('#remove-photo-btn').hide();
         },
 
-        openPicker: function(e) {
-            var _this = this;
-
-            this.$el.find('.colorpicker').addClass('open');
-            e.stopPropagation();
-
-            $(document).on('click', document, function() {
-                _this.closePicker();
-            });
+        openColorPicker: function(e) {
+            if(this.colorPicker) {
+                this.colorPicker.openPicker(e);
+            }
         },
 
-        closePicker: function() {
-            this.$el.find('.colorpicker').removeClass('open');
-            $(document).off();
-        },
-
-        onMouseMove: function(e) {
-
-            var pixel = this.canvas.context.getImageData(e.offsetX, e.offsetY, 1, 1).data,
-                dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0],
-                hexValue = '#' + ('0000' + dColor.toString(16)).substr(-6);
-
-            this.$el.find('.preview').css('background', "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")");
-            this.$el.find('#hexVal').val(hexValue);
-        },
-
-        canvasInit: function(){
-            var _this = this;
-
-            this.canvas.el = this.$el.find('#picker').get(0);
-            this.canvas.context = this.canvas.el.getContext('2d');
-            this.canvas.image = new Image();
-            this.canvas.image.src = '../../img/colorwheel1.png';
-
-            this.canvas.image.onload = function() {
-                _this.canvas.context.drawImage(_this.canvas.image, 0, 0, _this.canvas.image.width, _this.canvas.image.height);
-            };
-        },
-
-        closeSlider: function() {
+        closeSlider: function(e) {
+            e.preventDefault();
             this.$el.find('#add-object').removeClass('open');
         },
 
@@ -98,14 +89,19 @@ define([
             this.$el.find('.select').select2();
         },
 
+        saveObject: function(e) {
+            e.preventDefault();
+            
+        },
+
         render: function (router) {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
             this.imageCropView = router.showView(new ImageCropView());
+            this.colorPicker = router.showView(new ColorPicker());
 
             this.bindEvents();
 
-            this.canvasInit();
             this.select2Init();
             return this;
         }
