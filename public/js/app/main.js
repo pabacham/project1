@@ -11,7 +11,9 @@ requirejs.config({
         'jcrop': 'libs/others/jquery.Jcrop.min',
         underscore: 'libs/underscore/underscore',
         backbone: 'libs/backbone/backbone',
-        socketio: '../../socket.io/socket.io'
+        socketio: '../../socket.io/socket.io',
+        iosync: 'libs/backbone/backbone.iosync.min',
+        iobind: 'libs/backbone/backbone.iobind.min'
     },
     shim: {
         'jquery-select2': {
@@ -31,6 +33,14 @@ requirejs.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'iosync': {
+            deps: ['backbone', 'underscore'],
+            exports: 'iosync'
+        },
+        'iobind': {
+            deps: ['backbone', 'underscore'],
+            exports: 'iobind'
         }
     }
 

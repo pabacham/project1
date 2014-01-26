@@ -4,8 +4,10 @@ define([
     'underscore',
     'backbone',
     'router', // Request router.js
+    'iosync',
+    'iobind',
     'socket/socket'
-], function($, _, Backbone, Router, socket){
+], function($, _, Backbone, Router){
 
     var initialize = function(){
         // Pass in our Router module and call it's initialize function

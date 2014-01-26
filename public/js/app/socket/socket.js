@@ -17,9 +17,6 @@ define([
         .on('logout', function() {
             location.href = "/";
         })
-        .on('talk', function(data) {
-            console.debug(data.message);
-        })
         .on('error', function(reason) {
             if (reason == "handshake unauthorized") {
                 console.log('you are logged out');

@@ -4,8 +4,9 @@ define([
     'views/BaseView',
     'views/objects/ImageCropView',
     'plugins/ColorPicker',
+    'models/objects/ObjectModel',
     'jquery-select2'
-], function($, _, BaseView, ImageCropView, ColorPicker){
+], function($, _, BaseView, ImageCropView, ColorPicker, ObjectModel){
 
     var ObjectSliderView = BaseView.extend({
         templateName: "objectSliderTemplate",
@@ -14,7 +15,7 @@ define([
         imageCropView: null,
 
         initialize: function () {
-
+            this.model = new ObjectModel();
         },
 
         events: {
@@ -91,7 +92,10 @@ define([
 
         saveObject: function(e) {
             e.preventDefault();
-            
+
+            this.model.set({
+                'objectName': '123'
+            }).save();
         },
 
         render: function (router) {

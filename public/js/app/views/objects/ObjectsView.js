@@ -21,18 +21,13 @@ define([
         },
 
         openFormSlider: function(){
-            if(this.formSlider) {
-                this.formSlider.$el.find('#add-object').addClass('open');
-            } else {
-                this.formSlider = this.router.showView(new ObjectSliderView());
-                this.formSlider.$el.find('#add-object').addClass('open');
-            }
+            this.formSlider.$el.find('#add-object').addClass('open');
         },
 
         render: function (router) {
-            this.router = router;
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
+            this.formSlider = router.showView(new ObjectSliderView());
 
             return this;
         }

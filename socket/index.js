@@ -114,10 +114,11 @@ module.exports = function(server) {
     });
 
     io.sockets.on('connection', function(socket) {
-        var userRoutes = require('socket/routes/user')(socket);
+        var userRoutes = require('socket/routes/user')(socket),
+            objectRoutes = require('socket/routes/object')(socket);
 
         //socket routes
-        socket.on('test', userRoutes.talk);
+        socket.on('object:create', objectRoutes.create);
 
     });
 
