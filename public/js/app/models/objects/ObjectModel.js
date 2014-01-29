@@ -4,8 +4,23 @@ define([
 
     var ObjectModel = BaseModel.extend({
         defaults: {
-            objectName: ''
+            objectName: null,
+            application: null,
+            objectType: null,
+            color: null,
+            photo: null,
+            pug: null
         },
+
+        validation: {
+            objectName: [
+                { required: true, msg: 'Please enter object name' }
+            ],
+            color: [
+                { required: true, msg: 'Please choose color' }
+            ]
+        },
+
         urlRoot: 'object'
     });
 

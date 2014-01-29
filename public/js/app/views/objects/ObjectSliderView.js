@@ -13,6 +13,7 @@ define([
         container: "#slider-block",
         colorPicker: null,
         imageCropView: null,
+        bindValidation: true,
 
         initialize: function () {
             this.model = new ObjectModel();
@@ -92,9 +93,17 @@ define([
 
         saveObject: function(e) {
             e.preventDefault();
+            
+            var emptyCanvas = this.$el.find('#empty-canvas').get(0).toDataURL(),
+                photoCanvas = this.$el.find('#object-photo').get(0).toDataURL();
 
             this.model.set({
-                'objectName': '123'
+                'objectName': this.$el.find('input[name="objectName"]').val(),
+                'application': this.$el.find('select[name="application"]').val(),
+                'objectType': this.$el.find('select[name="objectType"]').val(),
+                'pug': this.$el.find('input[name="pug"]').val(),
+                'color': this.$el.find('input[name="color"]').val(),
+                'photo': (emptyCanvas != photoCanvas) ? photoCanvas : null
             }).save();
         },
 

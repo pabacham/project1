@@ -1,6 +1,7 @@
 define([
     'backbone',
-    'socket/socket'
+    'socket/socket',
+    'validation'
 ], function(Backbone, socket){
 
     var BaseModel = Backbone.Model.extend({

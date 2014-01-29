@@ -26,35 +26,35 @@ script#objectSliderTemplate(type='text/template')
         .form-row.clear-fix
             label Тип Пага
             .form-row.radio-wrap
-                input#mobile-pug.radio(type='radio', name='pug' checked)
+                input#mobile-pug.radio(type='radio', name='pug', value="application", checked)
                 label.radio-label(for="mobile-pug")
                     | Мобильное приложение
-                input#tracker-pug.radio(type='radio', name='pug')
+                input#tracker-pug.radio(type='radio', name='pug', value="tracker")
                 label.radio-label(for="tracker-pug")
                     | Трекер
         .form-row.clear-fix
             .form-cell
                 label Приложение
                 select.select(name="application")
-                    option
-                        | Huawei 0223422
-                    option
-                        | Huawei 0223422
-                    option
-                        | Huawei 0223422
+                    option(value="1")
+                        | Приложение 1
+                    option(value="2")
+                        | Приложение 2
+                    option(value="3")
+                        | Приложение 3
             .form-cell
-                label Тип оъекта
-                select.select(name="object-type")
-                    option
+                label Тип объекта
+                select.select(name="objectType")
+                    option(value="Машина")
                         | Машина
-                    option
+                    option(value="Человек")
                         | Человек
-                    option
+                    option(value="Животное")
                         | Животное
         .form-row.clear-fix
             .form-cell
                 label Имя объекта
-                input.txt(type='text', placeholder='Имя', name="object-name")
+                input.txt(type='text', placeholder='Имя', name="objectName")
             .form-cell
                 label Цвет объета
                 .picker-wrap.clear-fix
@@ -66,6 +66,7 @@ script#objectSliderTemplate(type='text/template')
                 label Фотография объекта
                 .wrap-photo
                     canvas#object-photo
+                    canvas#empty-canvas
                 .wrap-photo-btn
                     label
                         input#fileName(type="text", value="Выбрать фотографию")
