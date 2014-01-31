@@ -13,7 +13,8 @@ requirejs.config({
         backbone: 'libs/backbone/backbone',
         socketio: '../../socket.io/socket.io',
         iosync: 'libs/backbone/backbone.iosync.min',
-        iobind: 'libs/backbone/backbone.iobind.min'
+        iobind: 'libs/backbone/backbone.iobind.min',
+        validation: 'libs/backbone/backbone.validation.amd.min'
     },
     shim: {
         'jquery-select2': {
