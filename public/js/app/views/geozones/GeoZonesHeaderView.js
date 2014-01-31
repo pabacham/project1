@@ -1,32 +1,32 @@
 define([
     'jquery',
     'underscore',
-    'views/BaseView'
-], function($, _, BaseView){
+    'views/BaseView',
+    'views/geozones/GeoZonesSliderView'
+], function($, _, BaseView, GeoZonesSliderView){
 
-    MapHeaderView = BaseView.extend({
+    GeoZonesHeaderView = BaseView.extend({
         templateName: "geoZonesHeaderTemplate",
         container: "#geo-header",
         initialize: function () {
-            this.slider = $('#add-geo-zone');
         },
 
         events: {
-            'click #geo_slider_open': 'openSlider'
+            'click #geo_slider_open' : 'openSlider'
         },
 
-        openSlider: function() {
-            this.slider.toggleClass('open');
+        openSlider: function () {
+            this.formSlider.$el.find('#add-geo-zone').addClass('open');
         },
 
-        render: function () {
+        render: function (router) {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
-
+            this.formSlider = router.showView(new GeoZonesSliderView());
             return this;
         }
     });
 
-    return MapHeaderView;
+    return GeoZonesHeaderView;
 
 });

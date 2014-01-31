@@ -2,12 +2,15 @@ define([
     'jquery',
     'underscore',
     'views/BaseView',
+    'plugins/ColorPicker',
+    'models/objects/ObjectModel',
     'jquery-select2'
-], function($, _, BaseView){
+], function($, _, BaseView, ColorPicker, ObjectModel){
 
-    var ObjectSliderView = BaseView.extend({
+    var GeoZonesSliderView = BaseView.extend({
         templateName: "geoZonesSliderTemplate",
         container: "#slider-block",
+        colorPicker: null,
         canvas: {
             el: null,
             currentColor: null,
@@ -16,7 +19,7 @@ define([
         },
 
         initialize: function () {
-            this.popup = $('#popup')
+            this.model = new ObjectModel();
         },
 
         events: {
@@ -25,10 +28,6 @@ define([
             'mousemove #picker' : 'onMouseMove',
             'click .preview' : 'openPicker',
             'click .wrap-photo-btn button' : "openPopup"
-        },
-
-        openPopup: function(){
-            this.popup.toggleClass('open')
         },
 
         addColor: function(e) {
@@ -95,6 +94,6 @@ define([
         }
     });
 
-    return ObjectSliderView;
+    return GeoZonesSliderView;
 
 });

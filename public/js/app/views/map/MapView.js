@@ -3,21 +3,22 @@ define([
     'underscore',
     'views/BaseView',
     'views/map/MapTabsView',
+    'views/map/MapHeaderView',
     'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyDsf4WcN4BV1sBD806SLf05zddqcMISZno&sensor=false'
-], function($, _, BaseView, MapTabsView){
+], function($, _, BaseView, MapTabsView, MapHeaderView){
 
     var MapView = BaseView.extend({
         templateName: "mapTemplate",
         container: ".map-block",
         router: null,
         mapTabsView: null,
+        mapHeaderView: null,
 
         initialize: function () {
 
         },
 
         events: {
-
         },
 
         mapOptions: {
@@ -39,6 +40,7 @@ define([
             this.router = router;
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
+            this.mapTabsView =  router.showView(new MapHeaderView());
             this.googleMapInitialize();
 
             return this;

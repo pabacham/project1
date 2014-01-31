@@ -35,9 +35,7 @@ define([
 
         main: function() {
             this.makeActive('map');
-            this.showView(new MapSliderView());
             this.showView(new MapView());
-            this.showView(new MapHeaderView());
 
         },
 
@@ -48,9 +46,7 @@ define([
 
         geozones: function() {
             this.makeActive('geozones');
-            this.showView(new GeoZonesSliderView());
             this.showView(new GeoZonesView());
-            this.showView(new GeoZonesHeaderView());
 
         },
 

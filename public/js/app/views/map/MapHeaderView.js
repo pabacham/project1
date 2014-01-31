@@ -1,14 +1,15 @@
 define([
     'jquery',
     'underscore',
-    'views/BaseView'
-], function($, _, BaseView){
+    'views/BaseView',
+    'views/map/MapSliderView'
+], function($, _, BaseView, MapSliderView){
 
     MapHeaderView = BaseView.extend({
         templateName: "mapHeaderTemplate",
         container: "#map-header",
+        mapSlider: null,
         initialize: function () {
-            this.slider = $('.slider-body');
         },
 
         events: {
@@ -16,13 +17,13 @@ define([
         },
 
         openSlider: function() {
-            this.slider.toggleClass('open');
+            this.mapSlider.$el.find('#add-tracker').toggleClass('open');
         },
 
-        render: function () {
+        render: function (router) {
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
-
+            this.mapSlider = router.showView(new MapSliderView())
             return this;
         }
     });
