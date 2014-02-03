@@ -2,8 +2,9 @@ define([
     'jquery',
     'underscore',
     'views/BaseView',
-    'views/objects/ObjectSliderView'
-], function($, _, BaseView, ObjectSliderView){
+    'views/objects/ObjectSliderView',
+    'collections/objects/ObjectCollection'
+], function($, _, BaseView, ObjectSliderView, ObjectCollection){
 
     var ObjectsView = BaseView.extend({
         templateName: "objectsTemplate",
@@ -12,7 +13,8 @@ define([
         formSlider: null,
 
         initialize: function () {
-
+            this.objectCollection = new ObjectCollection();
+            this.objectCollection.fetch();
         },
 
         events: {

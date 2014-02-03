@@ -4,7 +4,7 @@
  */
 
 var express = require('express'),
-    routes = require('routes/routes'),
+    routes = require('api/controllers'),
     http = require('http'),
     config = require('config'),
     log = require('libs/log')(module),
@@ -15,7 +15,7 @@ var express = require('express'),
 var app = express();
 
 // all environments
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/api/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -71,5 +71,5 @@ server.listen(config.get('port'), function(){
   log.info('Express server listening on port ' + config.get('port'));
 });
 
-var io = require('./socket')(server);
+var io = require('api/socket')(server);
 app.set('io', io);

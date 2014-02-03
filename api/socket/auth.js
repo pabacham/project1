@@ -1,50 +1,43 @@
-var log = require('libs/log')(module),
-    config = require('config'),
-    async = require('async'),
-    cookie = require('cookie'),
-    connect = require('connect'),
-    sessionStore = require('libs/sessionStore'),
-    HttpError = require('error').HttpError,
-    User = require('models/user').User;
+module.exports = function(io) {
 
-function loadSession(sid, callback) {
+    var sessionStore = require('libs/sessionStore'),
+        config = require('config'),
+        async = require('async'),
+        cookie = require('cookie'),
+        connect = require('connect'),
+        HttpError = require('error').HttpError,
+        log = require('libs/log')(module),
+        User = require('api/models/user').User,
+        loadSession = function(sid, callback) {
+            // sessionStore callback is not quite async-style!
+            sessionStore.load(sid, function(err, session) {
+                if (arguments.length == 0) {
+                    // no arguments => no session
+                    return callback(null, null);
+                } else {
+                    return callback(null, session);
+                }
+            });
+        },
+        loadUser = function(session, callback) {
+            if (session && !session.user) {
+                log.debug("Session %s is anonymous", session.id);
+                return callback(null, null);
+            }
 
-    // sessionStore callback is not quite async-style!
-    sessionStore.load(sid, function(err, session) {
-        if (arguments.length == 0) {
-            // no arguments => no session
-            return callback(null, null);
-        } else {
-            return callback(null, session);
+            log.debug("retrieving user ", session.user._id);
+
+            User.findById(session.user._id, function(err, user) {
+                if (err) return callback(err);
+
+                if (!user) {
+                    return callback(null, null);
+                }
+                log.debug("user findbyId result: " + user);
+                callback(null, user);
+            });
         }
-    });
 
-}
-
-function loadUser(session, callback) {
-    if (session && !session.user) {
-        log.debug("Session %s is anonymous", session.id);
-        return callback(null, null);
-    }
-
-    log.debug("retrieving user ", session.user._id);
-
-    User.findById(session.user._id, function(err, user) {
-        if (err) return callback(err);
-
-        if (!user) {
-            return callback(null, null);
-        }
-        log.debug("user findbyId result: " + user);
-        callback(null, user);
-    });
-
-}
-
-module.exports = function(server) {
-    var io = require('socket.io').listen(server);
-    io.set('origins', '*:*');
-    io.set('logger', log);
 
     io.set('authorization', function(handshake, callback) {
         async.waterfall([
@@ -110,14 +103,6 @@ module.exports = function(server) {
             });
 
         });
-
-    });
-
-    io.sockets.on('connection', function(socket) {
-        var objectRoutes = require('socket/routes/object')(socket);
-
-        //socket routes
-        socket.on('object:create', objectRoutes.create);
 
     });
 
