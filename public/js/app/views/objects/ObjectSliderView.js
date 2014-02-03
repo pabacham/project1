@@ -93,7 +93,7 @@ define([
 
         saveObject: function(e) {
             e.preventDefault();
-            
+
             var emptyCanvas = this.$el.find('#empty-canvas').get(0).toDataURL(),
                 photoCanvas = this.$el.find('#object-photo').get(0).toDataURL();
 

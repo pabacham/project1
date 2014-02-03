@@ -1,6 +1,6 @@
 function Auth () {
     "use strict";
-    var User = require('models/user').User,
+    var User = require('api/models/user').User,
         async = require('async'),
         _ = require('lodash');
 
