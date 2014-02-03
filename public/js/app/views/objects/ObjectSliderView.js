@@ -15,8 +15,19 @@ define([
         imageCropView: null,
         bindValidation: true,
 
-        initialize: function () {
+        initialize: function (options) {
+            var isNew;
+
             this.model = new ObjectModel();
+            this.objectCollection = options.objectCollection;
+
+            this.listenTo(this.model, 'sync', function(model, data) {
+                if (isNew) {
+                    this.objectCollection.add(this.model);
+                    this.model = new ObjectModel();
+                }
+
+            });
         },
 
         events: {
@@ -108,7 +119,7 @@ define([
         },
 
         render: function (router) {
-            this.$el.html(_.template(this.getTemplate()));
+            this.$el.html(_.template(this.getTemplate(), this.objectCollection.toJSON()));
             $(this.container).html(this.$el);
             this.imageCropView = router.showView(new ImageCropView());
             this.colorPicker = router.showView(new ColorPicker());

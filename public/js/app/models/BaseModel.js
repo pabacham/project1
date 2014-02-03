@@ -5,6 +5,7 @@ define([
 ], function(Backbone, socket){
 
     var BaseModel = Backbone.Model.extend({
+        idAttribute: '_id',
         socket: socket
     });
 
