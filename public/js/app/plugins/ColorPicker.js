@@ -50,9 +50,14 @@ define([
 
         onMouseMove: function(e) {
 
-            var pixel = this.canvas.context.getImageData(e.offsetX, e.offsetY, 1, 1).data,
+            var canvasOffset = this.$el.find('#picker').offset();
+            var canvasX = Math.floor(e.pageX - canvasOffset.left);
+            var canvasY = Math.floor(e.pageY - canvasOffset.top);
+
+            var pixel = this.canvas.context.getImageData(canvasX, canvasY, 1, 1).data,
                 dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0],
                 hexValue = '#' + ('0000' + dColor.toString(16)).substr(-6);
+
 
             this.canvas.onMouseMoveColor = hexValue;
             this.trigger('mouseMoved', pixel, hexValue);
@@ -66,6 +71,7 @@ define([
             var _this = this;
 
             this.canvas.el = this.$el.find('#picker').get(0);
+
             this.canvas.context = this.canvas.el.getContext('2d');
             this.canvas.image = new Image();
             this.canvas.image.src = '../../img/colorwheel1.png';
