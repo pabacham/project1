@@ -14,7 +14,6 @@ define([
 
         initialize: function () {
             this.objectCollection = new ObjectCollection();
-            this.objectCollection.fetch();
         },
 
         events: {
@@ -27,9 +26,12 @@ define([
         },
 
         render: function (router) {
+            this.objectCollection.fetch();
             this.$el.html(_.template(this.getTemplate()));
             $(this.container).html(this.$el);
-            this.formSlider = router.showView(new ObjectSliderView());
+            this.formSlider = router.showView(new ObjectSliderView({
+                objectCollection: this.objectCollection
+            }));
 
             return this;
         }

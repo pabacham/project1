@@ -4,6 +4,7 @@ define([
 
     var ObjectModel = BaseModel.extend({
         defaults: {
+            _id: null,
             objectName: null,
             application: null,
             objectType: null,
