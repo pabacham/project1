@@ -4,14 +4,16 @@ define([
     'views/BaseView',
     'views/objects/ImageCropView',
     'plugins/ColorPicker',
+    'plugins/Preloader',
     'models/objects/ObjectModel',
     'jquery-select2'
-], function($, _, BaseView, ImageCropView, ColorPicker, ObjectModel){
+], function($, _, BaseView, ImageCropView, ColorPicker, Preloader, ObjectModel){
 
     var ObjectSliderView = BaseView.extend({
         templateName: "objectSliderTemplate",
         container: "#slider-block",
         colorPicker: null,
+        preloader: null,
         imageCropView: null,
         bindValidation: true,
 
@@ -31,6 +33,8 @@ define([
         },
 
         events: {
+            'click #mobile-pug' : 'openPreloader',
+            'click #tracker-pug' : 'closePreloader',
             'click .slider-close' : 'closeSlider',
             'click .btn02' : 'closeSlider',
             'click .btn01' : 'saveObject',
@@ -73,6 +77,15 @@ define([
                 this.$el.find('.preview').css('background', color);
                 this.colorPicker.closePicker();
             });
+        },
+
+        openPreloader: function(){
+            this.preloader.startPreloader();
+
+        },
+
+        closePreloader:function(){
+            this.preloader.finishPreloader();
         },
 
         onPhotoChange: function(e) {
@@ -123,6 +136,7 @@ define([
             $(this.container).html(this.$el);
             this.imageCropView = router.showView(new ImageCropView());
             this.colorPicker = router.showView(new ColorPicker());
+            this.preloader = router.showView(new Preloader());
 
             this.bindEvents();
 
